@@ -105,9 +105,8 @@ $room = queryExecute($getRoomQuery, true);
                 }
                 },
                 messages: {
-                    name: {
-                        required: "Hãy chọn tên phòng",
-                     
+                    room_id: {
+                        required: "Hãy chọn phòng",
                     },
                     image: {
                     required: "Hãy nhập ảnh",
