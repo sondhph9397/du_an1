@@ -22,7 +22,6 @@ $roles = queryExecute($getRoleQuery, true);
 
         <!-- Main Sidebar Container -->
         <?php include_once '../_share/sidebar.php'; ?>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->

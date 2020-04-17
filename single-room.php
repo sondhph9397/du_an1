@@ -4,6 +4,9 @@
   
 $getRoomGalleries = "select * from room_galleries";
 $RoomGalleries=queryExecute($getRoomGalleries,true);
+
+$getRoomQuery = "select * from room_types";
+$room = queryExecute($getRoomQuery,false);
 ?>
 
 <!DOCTYPE html>
@@ -198,7 +201,7 @@ $RoomGalleries=queryExecute($getRoomGalleries,true);
                                 <ul class="slides">
                                     <?php foreach ($RoomGalleries as $ga):?>
                                     <li>
-                                        <img src="<?php echo $ga['img_url'] ?>" alt="Slider Image" />
+                                        <img src="<?=  $ga['img_url'] ?>" alt="Slider Image" />
                                     </li>
                                     <?php endforeach;?>
                                     <!-- items mirrored twice, total of 12 -->
@@ -208,7 +211,7 @@ $RoomGalleries=queryExecute($getRoomGalleries,true);
                                 <ul class="slides">
                                 <?php foreach ($RoomGalleries as $ga):?>
                                     <li>
-                                        <img src="<?php echo $ga['img_url'] ?>" alt="Slider Image" />
+                                        <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
                                     </li>
                                     <?php endforeach;?>
                                    
@@ -220,7 +223,7 @@ $RoomGalleries=queryExecute($getRoomGalleries,true);
                         <div class="single-room-text">
                             <div class="rq-singleRoom-text-head">
                                 <div class="rq-singleRoom-text-head-left">
-                                    <h2>MASTER ROOM</h2>
+                                    <h2><?php echo $room['name']?></h2>
                                     <h4><span>$250 / </span> Night</h4>
                                 </div>
                                 <div class="rq-singleRoom-text-head-right pull-right">
@@ -233,9 +236,8 @@ $RoomGalleries=queryExecute($getRoomGalleries,true);
                             </div>
                             <!------------/rq-singleRoom-text-head ---------------------->
                             <div class="rq-single-room-para">
-                                <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralizd of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bounds
-                                    toOn the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralize</p>
-                                <p>of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bounds toblame belongs to those who fail in their duty through weakness of will, which is the same</p>
+                                <p><?= $room['about']?></p>
+                                
 
                             </div>
                             <!------------/rq-single-room-para---------------------->

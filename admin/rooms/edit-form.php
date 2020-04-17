@@ -62,7 +62,7 @@ $getUsersQuery = "select
             <section class="content">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
-                    <form id="edit-user-form" action="<?= ADMIN_URL . 'rooms/save-edit.php' ?>" method="post"
+                    <form id="edit-room-form" action="<?= ADMIN_URL . 'rooms/save-edit.php' ?>" method="post"
                         enctype="multipart/form-data">
                         <input type="hidden" name="id" value="<?= $room['id'] ?>">
                         <div class="row">
@@ -95,8 +95,7 @@ $getUsersQuery = "select
                                 <div class="form-group">
                                     <label for="">Nội dung</label>
                                     <textarea name="about" id="" cols="30" rows="10" class="form-control" ]?>
-                                    <?= $room['about']?>
-                                    </textarea>
+                                    <?= $room['about']?></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -153,60 +152,44 @@ $getUsersQuery = "select
         }
         reader.readAsDataURL(file);
     }
-    $('#edit-user-form').validate({
+    $('#edit-room-form').validate({
         rules: {
             name: {
                 required: true,
-                maxlength: 191
-            },
-            email: {
-                required: true,
                 maxlength: 191,
-                email: true,
-                remote: {
-                    url: "<?= ADMIN_URL . 'users/verify-email-existed.php' ?>",
-                    type: "post",
-                    data: {
-                        email: function() {
-                            return $("input[name='email']").val();
-                        },
-                        id: <?= $user['id']; ?>
-                    }
-                }
+                minlength: 2
             },
-            phone_number: {
-                number: true
-            },
-            house_no: {
+            short_desc: {
+                required: true,
                 maxlength: 191
             },
-            avatar: {
+           about: {
+                required: true,
+                maxlength: 191
+            },
+            featrue_image: {
                 extension: "png|jpg|jpeg|gif"
             }
         },
         messages: {
             name: {
-                required: "Hãy nhập tên người dùng",
-                maxlength: "Số lượng ký tự tối đa bằng 191 ký tự"
+                required: "hãy nhập tên phòng",
+                maxlength: "kí tự không qá 191",
+                minlength: "tên phòng từ 2 ký tự trở lên"
             },
-            email: {
-                required: "Hãy nhập email",
-                maxlength: "Số lượng ký tự tối đa bằng 191 ký tự",
-                email: "Không đúng định dạng email",
-                remote: "Email đã tồn tại, vui lòng sử dụng email khác"
+            short_desc: {
+                required: "hãy nhập tiêu đề",
+                maxlength: "tiêu đề không quá 191 kí tự",
             },
-            phone_number: {
-                min: "Bắt buộc là số có 10 chữ số",
-                max: "Bắt buộc là số có 10 chữ số",
-                number: "Nhập định dạng số"
+            about: {
+                required: "hãy nhập nội dung",
+                maxlength: "nội dung không quá 191"
             },
-            house_no: {
-                maxlength: "Số lượng ký tự tối đa bằng 191 ký tự"
-            },
-            avatar: {
-                extension: "Hãy nhập đúng định dạng ảnh (jpg | jpeg | png | gif)"
-            }
+           featrue_image:{
+               extension:"hãy chọn đúng định dạng"
+           }
         }
+        
     });
     </script>
 </body>
