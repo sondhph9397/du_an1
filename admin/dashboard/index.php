@@ -117,7 +117,7 @@ $schedules = queryExecute($getAllSchedulesSql, true);
                                 <div class="inner">
                                     <h3><?= count($roomgalleries) ?></h3>
 
-                                    <p>Loại phương tiện</p>
+                                    <p>Contact</p>
                                 </div>
                                 <div class="icon">
                                 <i class="nav-icon fas fa-id-card"></i>
@@ -131,7 +131,7 @@ $schedules = queryExecute($getAllSchedulesSql, true);
                             <div class="small-box bg-danger">
                                 <div class="inner">
                                     <h3><?= count($routes) ?></h3>
-                                    <p>Quãng Đường</p>
+                                    <p>Web Setting</p>
                                 </div>
                                 <div class="icon">
                                 <i class="fab fa-internet-explorer"></i>
