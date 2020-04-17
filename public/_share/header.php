@@ -83,7 +83,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
                             <a class="dropdown-item" href="<?= ADMIN_URL.'users'?>">Thông tin cá nhân</a>
                             <a class="dropdown-item" href="#">Đổi mật khẩu</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?php echo BASE_URL . './logout.php' ?>">Đăng xuất</a>
+                            <a class="dropdown-item" href="<?php echo BASE_URL . 'login/logout.php' ?>">Đăng xuất</a>
                         </div>
                     </li>
                     <?php else : ?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once "./config/utils.php";
+include_once "../config/utils.php";
 $name = trim($_POST['name']);
 $email = trim($_POST['email']);
 $password = trim($_POST['password']);

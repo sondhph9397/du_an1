@@ -48,7 +48,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
                     <p>Login to add new listing </p>
 
                     <div class="rq-login-form">
-                        <form action="post-login.php" method="POST">
+                        <form action="login/post-login.php" method="POST">
                             <input type="text" name="email" id="rq-user-input" placeholder="User Name">
                             <input type="password" name="password" id="rq-user-password" placeholder="Password">
                             <button type="submit">Login</button>
@@ -61,7 +61,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
                     </div>
                     <div class="rq-other-options">
                         <a href="#" class="rq-forgot-pass">Forget Password ?</a>
-                        <a href="sign-up.php" class="rq-signup">Sign up</a>
+                        <a href="login/sign-up.php" class="rq-signup">Sign up</a>
                     </div>
                 </div>
             </div>

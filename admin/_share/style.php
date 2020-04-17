@@ -30,4 +30,4 @@
 <!-- date picker -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
 <!-- My Css -->
-<link rel="stylesheet" href="<?= PUBLIC_URL . 'main.css'?>">
+<link rel="stylesheet" href="<?= PUBLIC_URL . 'css/main.css'?>">

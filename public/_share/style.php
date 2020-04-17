@@ -15,3 +15,5 @@
   <link rel="stylesheet" href="<?= ADMIN_ASSET_URL ?>css/jquery.raty.css" />
   <link rel="stylesheet" href="<?= ADMIN_ASSET_URL ?>css/magnific-popup.html" />
   <link rel="stylesheet" href="<?= ADMIN_ASSET_URL ?>css/hotel.style.css">
+  
+  <link rel="stylesheet" href="<?= PUBLIC_URL . 'css/main.css'?>">

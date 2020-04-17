@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "./config/utils.php";
+require_once "../config/utils.php";
 $getRoleQuery = "select * from roles where status=1";
 $roles = queryExecute($getRoleQuery, true);
 
@@ -15,15 +15,7 @@ $roles = queryExecute($getRoleQuery, true);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Houston | Sing Up</title>
-    <?php
-    include_once "./public/_share/style.php";
-    ?>
-    <style>
-    label.error {
-        color: #ff0000;
-        display: block;
-    }
-    </style>
+    <?php include_once "../public/_share/style.php";?>
 </head>
 
 <body>
@@ -78,7 +70,7 @@ $roles = queryExecute($getRoleQuery, true);
             <button class="rq-side-menu-close-button" id="rq-side-menu-close-button">Close Menu</button>
         </div>
         <!-- SIDE MENU END -->
-        <?php include_once './public/_share/header.php'; ?>
+        <?php include_once '../public/_share/header.php'; ?>
 
         <div class="rq-contact-message">
             <div class="container">
@@ -99,7 +91,7 @@ $roles = queryExecute($getRoleQuery, true);
                     <section class="content">
                         <div class="container-fluid">
                             <!-- Small boxes (Stat box) -->
-                            <form id="add-user-form" action="<?= BASE_URL  . 'save-add.php' ?>" method="post"
+                            <form id="add-user-form" action="<?= BASE_URL  . 'login/save-sign-up.php' ?>" method="post"
                                 enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -162,11 +154,11 @@ $roles = queryExecute($getRoleQuery, true);
                 </div>
             </div>
 
-            <?php require_once "./public/_share/footer.php" ?>
+            <?php require_once "../public/_share/footer.php" ?>
         </div><!-- main-wrapper -->
     </div>
-    <?php include_once "./public/_share/script.php"; 
-    include_once "./admin/_share/script.php" ?>
+    <?php include_once "../public/_share/script.php"; 
+    include_once "../admin/_share/script.php" ?>
     <script>
     $('#add-user-form').validate({
         rules: {
