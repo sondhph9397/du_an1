@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="<?= ADMIN_ASSET_URL ?>css/owl.carousel.css">
   <!-- <link rel="stylesheet" href="css/owl.theme.default.min.css"> -->
   <link rel="stylesheet" href="<?= ADMIN_ASSET_URL ?>css/jquery-ui.css">
-  <link rel="stylesheet" href="css/jquery-ui.structure.css">
+  <link rel="stylesheet" href="<?= ADMIN_ASSET_URL ?>css/jquery-ui.structure.css">
   <link rel="stylesheet" href="<?= ADMIN_ASSET_URL ?>css/jquery-ui.theme.min.css">
   <link rel="stylesheet" href="<?= ADMIN_ASSET_URL ?>css/jquery.timepicker.css">
   <link rel="stylesheet" href="<?= ADMIN_ASSET_URL ?>css/jquery.countdown.css">
