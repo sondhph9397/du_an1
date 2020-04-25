@@ -1,12 +1,3 @@
-<?php
-// bắt đầu sử dụng session
-// session_start();
-// require_once '../../config/utils.php';
-$loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
-//lấy dữ liệu bảng web_settings
-$getWebsettingQuery=" select * from web_setting";
-$websetting = queryExecute($getWebsettingQuery, false);
-?>
 <header>
     <!-- Navigation Menu start-->
     <nav class="navbar rq-header-main-menu navbar-fixed-top" role="navigation">

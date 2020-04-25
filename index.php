@@ -17,7 +17,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Houston | Home </title>
-    <?php require_once './public/_share/style.php'; ?>
+    <?php include_once './public/_share/style.php'?>
 
 </head>
 
@@ -361,9 +361,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
 
     <div id="map"></div>
 
-    <?php 
- require_once './public/_share/footer.php';
- ?>
+    <?php include_once './public/_share/footer.php'; ?>
     <?php require_once './public/_share/script.php'; ?>
 </body>
 
