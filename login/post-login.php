@@ -8,10 +8,9 @@ $sql = "select * from users where email = '$email'";
 $loggedInUser = queryExecute($sql, false);
 if(password_verify($password, $loggedInUser['password'])){
     $_SESSION[AUTH] = $loggedInUser;
-    header('location: ../index.php');
+    header('location: ../index.php?msg=Bạn đã đăng nhập thành công!');
     die;
 }else{
     header('location: ../index.php?msg=Sai thông tin đăng nhập!');
     die;
 }
- ?>

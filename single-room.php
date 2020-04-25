@@ -1,12 +1,14 @@
-<?php 
-  session_start();
-  require_once "./config/utils.php";
-  
+<?php
+session_start();
+require_once "./config/utils.php";
+// login user
+$loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+
 $getRoomGalleries = "select * from room_galleries";
-$RoomGalleries=queryExecute($getRoomGalleries,true);
+$RoomGalleries = queryExecute($getRoomGalleries, true);
 
 $getRoomQuery = "select * from room_types";
-$room = queryExecute($getRoomQuery,false);
+$room = queryExecute($getRoomQuery, false);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +21,7 @@ $room = queryExecute($getRoomQuery,false);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Houston | Room Details</title>
-     <?php require_once "public/_share/style.php"; ?>
+    <?php require_once "public/_share/style.php"; ?>
 </head>
 
 <body>
@@ -38,43 +40,10 @@ $room = queryExecute($getRoomQuery,false);
         <div class="rq-side-menu-overlay"></div>
         <!-- PAGE OVERLAY WHEN MENU ACTIVE END -->
 
-        <div class="rq-side-menu-wrap">
-            <!-- OVERLAY -->
-            <div class="rq-dark-overlay"></div>
-            <!-- OVERLAY END -->
-
-            <div id="rq-side-menu" class="rq-side-menu">
-                <div class="rq-side-menu-widget-wrap">
-                    <div class="rq-login-form-wrapper">
-                        <h3>User Login</h3>
-                        <p>Login to add new listing </p>
-
-                        <div class="rq-login-form">
-                            <form action="#">
-                                <input type="text" name="rq-user-name" id="rq-user-input" placeholder="User Name">
-                                <input type="password" name="rq-user-password" id="rq-user-password" placeholder="Password">
-                                <button type="submit">Login</button>
-                            </form>
-                        </div>
-
-                        <div class="rq-social-login-opt">
-                            <a href="#" class="rq-social-login-btn rq-facebook-login">Login with Facebook</a>
-                            <a href="#" class="rq-social-login-btn rq-twitter-login">Login with Twitter</a>
-                        </div>
-
-                        <div class="rq-other-options">
-                            <a href="#" class="rq-forgot-pass">Forget Password ?</a>
-                            <a href="#" class="rq-signup">Sign up</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="rq-side-menu-close-button" id="rq-side-menu-close-button">Close Menu</button>
-        </div>
+        <?php include_once './public/_share/sidebar.php' ?>
         <!-- SIDE MENU END -->
 
-        <?php require_once "public/_share/header.php"?>
+        <?php require_once "public/_share/header.php" ?>
 
         <div class="rq-checkout-banner">
             <div class="rq-checkout-banner-mask">
@@ -138,35 +107,35 @@ $room = queryExecute($getRoomQuery,false);
                             <h2>total Room</h2>
                             <div class="rq-total">
                                 <select class="js-example-placeholder-single form-control">
-                  <option>&nbsp;</option>
-                  <option value="1">Single Bed</option>
-                  <option value="2">Double Bed</option>
-                  <option value="3">Triple Bed</option>
-                </select>
+                                    <option>&nbsp;</option>
+                                    <option value="1">Single Bed</option>
+                                    <option value="2">Double Bed</option>
+                                    <option value="3">Triple Bed</option>
+                                </select>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6">
                                     <h2>ADULT</h2>
                                     <div class="rq-adult">
                                         <select class="js-example-placeholder-single form-control">
-                      <option>&nbsp;</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
+                                            <option>&nbsp;</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <h2>children</h2>
                                     <div class="rq-children">
                                         <select class="js-example-placeholder-single form-control">
-                      <option>&nbsp;</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
+                                            <option>&nbsp;</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -176,16 +145,16 @@ $room = queryExecute($getRoomQuery,false);
                                 <div class="rq-extra-content">
                                     <div class="checkbox">
                                         <label>
-                      <input type="checkbox"> BBQ Party
-                    </label>
+                                            <input type="checkbox"> BBQ Party
+                                        </label>
                                     </div>
                                     <p><span>$250 </span>/ Group / Trip</p>
                                 </div>
                                 <div class="rq-extra-content rq-extra-content-2">
                                     <div class="checkbox">
                                         <label>
-                      <input type="checkbox"> Airport Transfer
-                    </label>
+                                            <input type="checkbox"> Airport Transfer
+                                        </label>
                                     </div>
                                     <p><span>$250 </span>/ Group / Trip</p>
                                 </div>
@@ -199,22 +168,22 @@ $room = queryExecute($getRoomQuery,false);
                             <!-- Place somewhere in the <body> of your page -->
                             <div id="slider" class="flexslider">
                                 <ul class="slides">
-                                    <?php foreach ($RoomGalleries as $ga):?>
-                                    <li>
-                                        <img src="<?=  $ga['img_url'] ?>" alt="Slider Image" />
-                                    </li>
-                                    <?php endforeach;?>
+                                    <?php foreach ($RoomGalleries as $ga) : ?>
+                                        <li>
+                                            <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
+                                        </li>
+                                    <?php endforeach; ?>
                                     <!-- items mirrored twice, total of 12 -->
                                 </ul>
                             </div>
                             <div id="carousel" class="flexslider">
                                 <ul class="slides">
-                                <?php foreach ($RoomGalleries as $ga):?>
-                                    <li>
-                                        <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
-                                    </li>
-                                    <?php endforeach;?>
-                                   
+                                    <?php foreach ($RoomGalleries as $ga) : ?>
+                                        <li>
+                                            <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
+                                        </li>
+                                    <?php endforeach; ?>
+
                                     <!-- items mirrored twice, total of 12 -->
                                 </ul>
                             </div>
@@ -223,7 +192,7 @@ $room = queryExecute($getRoomQuery,false);
                         <div class="single-room-text">
                             <div class="rq-singleRoom-text-head">
                                 <div class="rq-singleRoom-text-head-left">
-                                    <h2><?php echo $room['name']?></h2>
+                                    <h2><?php echo $room['name'] ?></h2>
                                     <h4><span>$250 / </span> Night</h4>
                                 </div>
                                 <div class="rq-singleRoom-text-head-right pull-right">
@@ -236,8 +205,8 @@ $room = queryExecute($getRoomQuery,false);
                             </div>
                             <!------------/rq-singleRoom-text-head ---------------------->
                             <div class="rq-single-room-para">
-                                <p><?= $room['about']?></p>
-                                
+                                <p><?= $room['about'] ?></p>
+
 
                             </div>
                             <!------------/rq-single-room-para---------------------->
@@ -273,7 +242,9 @@ $room = queryExecute($getRoomQuery,false);
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
-                                        <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralizd of pleasure of the moment, so blinded by desire</p>
+                                        <p>On the other hand, we denounce with righteous indignation and dislike men who
+                                            are so beguiled and demoralizd of pleasure of the moment, so blinded by
+                                            desire</p>
                                         <h6>dorian doe</h6>
                                     </div>
                                 </div>
@@ -332,7 +303,7 @@ $room = queryExecute($getRoomQuery,false);
         </div>
         <!-- / rq-single-room-area-->
 
-      <?php require_once "public/_share/footer.php"?>
+        <?php require_once "public/_share/footer.php" ?>
     </div>
     <?php require_once "public/_share/script.php"; ?>
 

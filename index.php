@@ -4,8 +4,8 @@ session_start();
 require_once './config/utils.php';
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 //lấy dữ liệu bảng web_settings
-$getWebsettingQuery=" select * from web_setting";
-$websetting = queryExecute($getWebsettingQuery,false);
+$getWebsettingQuery = " select * from web_setting";
+$websetting = queryExecute($getWebsettingQuery, false);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Houston | Home </title>
-    <?php include_once './public/_share/style.php'?>
+    <?php include_once './public/_share/style.php' ?>
 
 </head>
 
@@ -36,39 +36,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
     <div class="rq-side-menu-overlay"></div>
     <!-- PAGE OVERLAY WHEN MENU ACTIVE END -->
 
-    <div class="rq-side-menu-wrap">
-        <!-- OVERLAY -->
-        <div class="rq-dark-overlay"></div>
-        <!-- OVERLAY END -->
-
-        <div id="rq-side-menu" class="rq-side-menu">
-            <div class="rq-side-menu-widget-wrap">
-                <div class="rq-login-form-wrapper">
-                    <h3>User Login</h3>
-                    <p>Login to add new listing </p>
-
-                    <div class="rq-login-form">
-                        <form action="login/post-login.php" method="POST">
-                            <input type="text" name="email" id="rq-user-input" placeholder="User Name">
-                            <input type="password" name="password" id="rq-user-password" placeholder="Password">
-                            <button type="submit">Login</button>
-                        </form>
-                        <div class="d-flex justify-content-center">
-                            <?php if (isset($_GET['msg'])) : ?>
-                            <span class="text-danger"><?php echo $_GET['msg'] ?></span>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                    <div class="rq-other-options">
-                        <a href="#" class="rq-forgot-pass">Forget Password ?</a>
-                        <a href="login/sign-up.php" class="rq-signup">Sign up</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <button class="rq-side-menu-close-button" id="rq-side-menu-close-button">Close Menu</button>
-    </div>
+    <?php include_once './public/_share/sidebar.php' ?>
     <!-- SIDE MENU END -->
 
     <?php include_once './public/_share/header.php'; ?>
@@ -78,7 +46,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
             <div class="container">
                 <div class="bq-banner-text">
                     <div class="bq-banner-text-middle">
-                        <img src="<?=ADMIN_ASSET_URL ?>img/<?=$websetting['small-logo'];?>" alt="Responsive image" />
+                        <img src="<?= ADMIN_ASSET_URL ?>img/<?= $websetting['small-logo']; ?>" alt="Responsive image" />
                         <h1><?= $websetting['name'] ?></h1>
                         <div class="rq-banner-icon">
                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -87,7 +55,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
                             <i class="fa fa-star" aria-hidden="true"></i>
                             <i class="fa fa-star" aria-hidden="true"></i>
                         </div>
-                        <h3><?= $websetting['title_hotel'];?></h3>
+                        <h3><?= $websetting['title_hotel']; ?></h3>
                         <div class="rq-checkout-area">
                             <div class="container">
                                 <div class="rq-cheakout-content">
@@ -108,8 +76,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
                                     </div>
                                     <div class="rq-cheakout-content-border">
                                         <div class="rq-select-single rq-room-type">
-                                            <select
-                                                class="js-example-placeholder-single rq-select-single-one form-control">
+                                            <select class="js-example-placeholder-single rq-select-single-one form-control">
                                                 <option>&nbsp;</option>
                                                 <option value="1">Single Bed</option>
                                                 <option value="2">Double Bed</option>
@@ -117,8 +84,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
                                             </select>
                                         </div>
                                         <div class="rq-select-single rq-adult-person">
-                                            <select
-                                                class="js-example-placeholder-single rq-select-single-one form-control">
+                                            <select class="js-example-placeholder-single rq-select-single-one form-control">
                                                 <option>&nbsp;</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -127,8 +93,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
                                             </select>
                                         </div>
                                         <div class="rq-select-single rq-children-num">
-                                            <select
-                                                class="js-example-placeholder-single rq-select-single-one form-control">
+                                            <select class="js-example-placeholder-single rq-select-single-one form-control">
                                                 <option>&nbsp;</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -164,14 +129,13 @@ $websetting = queryExecute($getWebsettingQuery,false);
     <div class="rq-hotel-palace">
         <div class="container ">
             <div class="rq-hotel-text text-center">
-                <h1><?= $websetting['name'];?></h1>
+                <h1><?= $websetting['name']; ?></h1>
                 <div class="rq-palace-logo">
                     <img src="<?= ADMIN_ASSET_URL ?>img/palace_logo_2.png" alt=".." />
                 </div>
-                <p><?= $websetting['slogan'];?></p>
+                <p><?= $websetting['slogan']; ?></p>
                 <div class="sign">
-                    <img src="<?= ADMIN_ASSET_URL ?>img/<?= $websetting['slogan_author'];?>" class="img-responsive"
-                        alt="Responsive image" />
+                    <img src="<?= ADMIN_ASSET_URL ?>img/<?= $websetting['slogan_author']; ?>" class="img-responsive" alt="Responsive image" />
                 </div>
                 <div class="rq-pal-bg">
                     <img src="<?= ADMIN_ASSET_URL ?>img/palace-bg.png" class="img-responsive" alt="Responsive image" />
@@ -182,7 +146,7 @@ $websetting = queryExecute($getWebsettingQuery,false);
 
     <section class="rq-slider-area parallax-window">
         <div class="rq-main-slider-mask pdb-3"></div>
-        <a class="rq-video-play-btn popup-vimeo" href="<?= $websetting['intro_youtube_url'];?>">
+        <a class="rq-video-play-btn popup-vimeo" href="<?= $websetting['intro_youtube_url']; ?>">
             <i class="ion-ios-play-outline"></i>
         </a>
     </section>
@@ -197,68 +161,48 @@ $websetting = queryExecute($getWebsettingQuery,false);
                     <!-- PACKAGE ITEM -->
                     <div class="rq-room-package rq-dbl-width">
                         <picture>
-                            <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-1.jpg>
-                            <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/room-package-img-1.jpg"
-                                srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-1.jpg>
-                        </picture>
-
-                        <a href="#" class="rq-img-overlay-effect">
+                            <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-1.jpg> <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/room-package-img-1.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-1.jpg> </picture> <a href="#" class="rq-img-overlay-effect">
                             <p class="rq-room-name-price">
                                 <span class="rq-room-title">COMBO BUFFET</span>
                                 <span class="rq-package-price">$250</span>
                             </p>
-                        </a>
+                            </a>
                     </div>
                     <!-- END -->
 
                     <!-- PACKAGE ITEM -->
                     <div class="rq-room-package rq-dbl-height">
                         <picture>
-                            <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-4.jpg>
-                            <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/room-package-img-4.jpg"
-                                srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-4.jpg>
-                        </picture>
-
-                        <a href="#" class="rq-img-overlay-effect">
+                            <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-4.jpg> <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/room-package-img-4.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-4.jpg> </picture> <a href="#" class="rq-img-overlay-effect">
                             <p class="rq-room-name-price">
                                 <span class="rq-room-title">DINNER PACKEGE</span>
                                 <span class="rq-package-price">$250</span>
                             </p>
-                        </a>
+                            </a>
                     </div>
                     <!-- END -->
 
                     <!-- PACKAGE ITEM -->
                     <div class="rq-room-package">
                         <picture>
-                            <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-2.jpg>
-                            <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/room-package-img-2.jpg"
-                                srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-2.jpg>
-                        </picture>
-
-                        <a href="#" class="rq-img-overlay-effect">
+                            <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-2.jpg> <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/room-package-img-2.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-2.jpg> </picture> <a href="#" class="rq-img-overlay-effect">
                             <p class="rq-room-name-price">
                                 <span class="rq-room-title">MASTER ROOM</span>
                                 <span class="rq-package-price">$250</span>
                             </p>
-                        </a>
+                            </a>
                     </div>
                     <!-- END -->
 
                     <!-- PACKAGE ITEM -->
                     <div class="rq-room-package">
                         <picture>
-                            <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-3.jpg>
-                            <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/room-package-img-3.jpg"
-                                srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-3.jpg>
-                        </picture>
-
-                        <a href="#" class="rq-img-overlay-effect">
+                            <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-3.jpg> <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/room-package-img-3.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/room-package-img-3.jpg> </picture> <a href="#" class="rq-img-overlay-effect">
                             <p class="rq-room-name-price">
                                 <span class="rq-room-title">SUNSET DELUXE</span>
                                 <span class="rq-package-price">$250 <span>night</span></span>
                             </p>
-                        </a>
+                            </a>
                     </div>
                     <!-- END -->
                 </div>
@@ -279,16 +223,10 @@ $websetting = queryExecute($getWebsettingQuery,false);
                         <div class="thumbnail">
                             <div class="rq-img-wrapper">
                                 <picture>
-                                    <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img1.jpg>
-                                    <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/palace-img1.jpg"
-                                        srcset=<?= ADMIN_ASSET_URL ?>img/palace-img1.jpg>
-                                </picture>
-                            </div>
-
-                            <div class="caption">
-                                <h3><a href="#">large cafe</a></h3>
-                                <p>point of using that has more less normal distribution is among</p>
-                                <h4 class="special-span"><span>$250</span>Night</h4>
+                                    <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img1.jpg> <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/palace-img1.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img1.jpg> </picture> </div> <div class="caption">
+                                    <h3><a href="#">large cafe</a></h3>
+                                    <p>point of using that has more less normal distribution is among</p>
+                                    <h4 class="special-span"><span>$250</span>Night</h4>
                             </div>
                         </div>
                     </div>
@@ -296,15 +234,10 @@ $websetting = queryExecute($getWebsettingQuery,false);
                         <div class="thumbnail">
                             <div class="rq-img-wrapper">
                                 <picture>
-                                    <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img2.jpg>
-                                    <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/palace-img2.jpg"
-                                        srcset=<?= ADMIN_ASSET_URL ?>img/palace-img2.jpg>
-                                </picture>
-                            </div>
-                            <div class="caption">
-                                <h3><a href="#">rooftop cusine</a></h3>
-                                <p>point of using that has more less normal distribution is among</p>
-                                <h4 class="special-span"><span>$250</span>Night</h4>
+                                    <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img2.jpg> <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/palace-img2.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img2.jpg> </picture> </div> <div class="caption">
+                                    <h3><a href="#">rooftop cusine</a></h3>
+                                    <p>point of using that has more less normal distribution is among</p>
+                                    <h4 class="special-span"><span>$250</span>Night</h4>
                             </div>
                         </div>
                     </div>
@@ -312,15 +245,10 @@ $websetting = queryExecute($getWebsettingQuery,false);
                         <div class="thumbnail">
                             <div class="rq-img-wrapper">
                                 <picture>
-                                    <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img3.jpg>
-                                    <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/palace-img3.jpg"
-                                        srcset=<?= ADMIN_ASSET_URL ?>img/palace-img3.jpg>
-                                </picture>
-                            </div>
-                            <div class="caption">
-                                <h3><a href="#">premium living</a></h3>
-                                <p>point of using that has more less normal distribution is among</p>
-                                <h4 class="special-span"><span>$250</span>Night</h4>
+                                    <source media="(min-width: 768px)" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img3.jpg> <img alt="Image" src="<?= ADMIN_ASSET_URL ?>img/palace-img3.jpg" srcset=<?= ADMIN_ASSET_URL ?>img/palace-img3.jpg> </picture> </div> <div class="caption">
+                                    <h3><a href="#">premium living</a></h3>
+                                    <p>point of using that has more less normal distribution is among</p>
+                                    <h4 class="special-span"><span>$250</span>Night</h4>
                             </div>
                         </div>
                     </div>
@@ -362,7 +290,21 @@ $websetting = queryExecute($getWebsettingQuery,false);
     <div id="map"></div>
 
     <?php include_once './public/_share/footer.php'; ?>
-    <?php require_once './public/_share/script.php'; ?>
+    <?php include_once './public/_share/script.php'; ?>
+    <?php include_once './admin/_share/script.php'; ?>
+    
+    <script>
+        <?php if (isset($_GET['msg'])) : ?>
+            Swal.fire({
+                    position: 'bottom-end',
+                    icon: 'success',
+                    title: "<?= $_GET['msg']; ?>",
+                    showConfirmButton: false,
+                    timer: 1500
+                }
+            );
+        <?php endif; ?>
+    </script>
 </body>
 
 <!-- Mirrored from redqteam.com/sites/houston/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Mar 2020 05:54:05 GMT -->

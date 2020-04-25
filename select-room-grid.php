@@ -1,6 +1,9 @@
 <?php
 session_start();
 require_once "./config/utils.php";
+
+$loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+
 $getRoomQuery = "select * from room_types";
 $room = queryExecute($getRoomQuery, true);
 ?>

@@ -5,6 +5,7 @@ define('ADMIN_URL', BASE_URL . 'admin/');
 
 
 define('PUBLIC_URL', BASE_URL . 'public/');
+define('LOGIN_URL', BASE_URL . 'login/');
 define('ADMIN_ASSET_URL', PUBLIC_URL . 'admin/');
 define('DEFAULT_IMAGE', ADMIN_ASSET_URL . 'img/default-image.jpg');
 

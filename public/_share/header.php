@@ -1,3 +1,12 @@
+<?php
+// bắt đầu sử dụng session
+// session_start();
+// require_once '../../config/utils.php';
+$loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+//lấy dữ liệu bảng web_settings
+$getWebsettingQuery=" select * from web_setting";
+$websetting = queryExecute($getWebsettingQuery, false);
+?>
 <header>
     <!-- Navigation Menu start-->
     <nav class="navbar rq-header-main-menu navbar-fixed-top" role="navigation">
@@ -65,23 +74,6 @@
             <!-- navbar-collapse end-->
 
             <div class="rq-extra-btns-wrapper">
-                <div class="rq-language justify-content-center">
-                    <?php if ($loggedInUser) : ?>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                            aria-haspopup="true" aria-expanded="false">Hi, <?= $loggedInUser['name']; ?></a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="<?= ADMIN_URL.'users'?>">Thông tin cá nhân</a>
-                            <a class="dropdown-item" href="#">Đổi mật khẩu</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?php echo BASE_URL . 'login/logout.php' ?>">Đăng xuất</a>
-                        </div>
-                    </li>
-                    <?php else : ?>
-                    <ul>
-                    </ul>
-                    <?php endif ?>
-                </div>
                 <button id="rq-side-menu-btn" class="cd-btn btn rq-sidemenu-btn"></button>
             </div>
 
