@@ -291,7 +291,6 @@ $websetting = queryExecute($getWebsettingQuery, false);
 
     <?php include_once './public/_share/footer.php'; ?>
     <?php include_once './public/_share/script.php'; ?>
-    <?php include_once './admin/_share/script.php'; ?>
     
     <script>
         <?php if (isset($_GET['msg'])) : ?>
