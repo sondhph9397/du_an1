@@ -4,7 +4,7 @@ session_start();
 require_once './config/utils.php';
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 //lấy dữ liệu bảng web_settings
-$getWebsettingQuery = " select * from web_setting";
+$getWebsettingQuery = " select * from web_setting where id = 2";
 $websetting = queryExecute($getWebsettingQuery, false);
 ?>
 <!DOCTYPE html>
@@ -46,7 +46,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
             <div class="container">
                 <div class="bq-banner-text">
                     <div class="bq-banner-text-middle">
-                        <img src="<?= ADMIN_ASSET_URL ?>img/<?= $websetting['small-logo']; ?>" alt="Responsive image" />
+                        <img src="<?= BASE_URL . $websetting['small_logo']; ?>" alt="Responsive image" />
                         <h1><?= $websetting['name'] ?></h1>
                         <div class="rq-banner-icon">
                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -135,7 +135,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
                 </div>
                 <p><?= $websetting['slogan']; ?></p>
                 <div class="sign">
-                    <img src="<?= ADMIN_ASSET_URL ?>img/<?= $websetting['slogan_author']; ?>" class="img-responsive" alt="Responsive image" />
+                    <img src="<?= BASE_URL . $websetting['slogan_author'];  ?>" class="img-responsive" alt="Responsive image" />
                 </div>
                 <div class="rq-pal-bg">
                     <img src="<?= ADMIN_ASSET_URL ?>img/palace-bg.png" class="img-responsive" alt="Responsive image" />

@@ -4,7 +4,7 @@
 // require_once '../../config/utils.php';
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 //lấy dữ liệu bảng web_settings
-$getWebsettingQuery=" select * from web_setting";
+$getWebsettingQuery=" select * from web_setting where id = 2";
 $websetting = queryExecute($getWebsettingQuery, false);
 ?>
 <header>
@@ -22,7 +22,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
 
                 <!-- Logo -->
                 <a class="navbar-brand" href="index.php"><img class="logo"
-                        src="<?= ADMIN_ASSET_URL ?>img/<?=$websetting['logo']?>" alt="GLIMPSE"></a>
+                        src="<?= BASE_URL . $websetting['logo'] ?>" alt="GLIMPSE"></a>
             </div>
             <!-- Navbar Toggle End -->
 
