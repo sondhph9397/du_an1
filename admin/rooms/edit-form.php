@@ -165,7 +165,6 @@ $getUsersQuery = "select
             },
            about: {
                 required: true,
-                maxlength: 191
             },
             featrue_image: {
                 extension: "png|jpg|jpeg|gif"
@@ -183,7 +182,6 @@ $getUsersQuery = "select
             },
             about: {
                 required: "hãy nhập nội dung",
-                maxlength: "nội dung không quá 191"
             },
            featrue_image:{
                extension:"hãy chọn đúng định dạng"
