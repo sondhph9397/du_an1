@@ -23,6 +23,9 @@ $web = queryExecute($getAllWebSql, true);
 $getAllContactSql = "select * from contact";
 $contact = queryExecute($getAllContactSql, true);
 
+$getAllBookingSql = "select * from booking";
+$booking = queryExecute($getAllBookingSql, true);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -137,6 +140,20 @@ $contact = queryExecute($getAllContactSql, true);
                                 <i class="fab fa-internet-explorer"></i>
                                 </div>
                                 <a href="<?= ADMIN_URL . 'web_settings' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3><?= count($booking) ?></h3>
+                                    <p>Đặt phòng</p>
+                                </div>
+                                <div class="icon">
+                                <i class="fas fa-money-check-alt nav-icon"></i>
+                                </div>
+                                <a href="<?= ADMIN_URL . 'booking' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
