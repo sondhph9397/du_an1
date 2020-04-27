@@ -49,11 +49,11 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
                     <div class="row">
                         <div class="col-md-8 col-sm-8">
                             <h2>send a message</h2>
-                            <form action="#">
-                                <input type="text" name="rq-contact-name" id="rq-contact-name" placeholder="Name">
-                                <input type="email" name="rq-contact-email" id="rq-contact-email" placeholder="Email">
-                                <input type="text" name="rq-contact-web" id="rq-contact-web" placeholder="Web">
-                                <textarea name="rq-contact-message" id="rq-contact-message" cols="30" rows="5"
+                            <form action="<?= ADMIN_URL . 'contacts/save-contact.php' ?>" method="post" id="add-contact">
+                                <input type="text" name="name" id="rq-contact-name" placeholder="Name">
+                                <input type="email" name="email" id="rq-contact-email" placeholder="Email">
+                                <input type="text" name="phone" id="rq-contact-web" placeholder="Number phone">
+                                <textarea name="message" id="rq-contact-message" cols="30" rows="5"
                                     placeholder="Message"></textarea>
                                 <button type="submit">Submit</button>
                             </form>

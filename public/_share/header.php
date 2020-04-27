@@ -44,16 +44,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
                         <a href="about-us.php">About</a>
                     </li>
                     <li>
-                        <a href="cart.php">Pages</a>
-                        <ul class="rq-sub-menu">
-                            <li>
-                                <a href="cart.php">Cart</a>
-                            </li>
-                            <li>
-                                <a href="checkout.php">Check Out</a>
-                            </li>
-
-                        </ul>
+                        <a href="booking.php">Booking</a>
                     </li>
                     <li>
                         <a href="blog.php">Blog</a>

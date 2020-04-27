@@ -16,12 +16,12 @@ $getAllRoomGalleriesSql = "select * from room_galleries";
 $roomgalleries = queryExecute($getAllRoomGalleriesSql, true);
 
 # Lấy ra tất cả các bản ghi trong bảng routes
-$getAllRoutesSql = "select * from routes";
-$routes = queryExecute($getAllRoutesSql, true);
+$getAllWebSql = "select * from web_setting";
+$web = queryExecute($getAllWebSql, true);
 
 # Lấy ra tất cả các bản ghi trong bảng shedules
-$getAllSchedulesSql = "select * from route_schedules";
-$schedules = queryExecute($getAllSchedulesSql, true);
+$getAllContactSql = "select * from contact";
+$contact = queryExecute($getAllContactSql, true);
 
 ?>
 <!DOCTYPE html>
@@ -115,14 +115,14 @@ $schedules = queryExecute($getAllSchedulesSql, true);
                             <!-- small box -->
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3><?= count($roomgalleries) ?></h3>
+                                    <h3><?= count($contact) ?></h3>
 
                                     <p>Contact</p>
                                 </div>
                                 <div class="icon">
                                 <i class="nav-icon fas fa-id-card"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'vehicle_type' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="<?= ADMIN_URL . 'contacts' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -130,13 +130,13 @@ $schedules = queryExecute($getAllSchedulesSql, true);
                             <!-- small box -->
                             <div class="small-box bg-danger">
                                 <div class="inner">
-                                    <h3><?= count($routes) ?></h3>
+                                    <h3><?= count($web) ?></h3>
                                     <p>Web Setting</p>
                                 </div>
                                 <div class="icon">
                                 <i class="fab fa-internet-explorer"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'routes' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="<?= ADMIN_URL . 'web_settings' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>

@@ -109,15 +109,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= ADMIN_URL . 'routes' ?>" class="nav-link">
+                            <a href="<?= ADMIN_URL . 'contacts' ?>" class="nav-link">
                                 <i class="fa fa-list-ol nav-icon"></i>
                                 <p>Danh sách</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= ADMIN_URL . 'routes/add-form.php' ?>" class="nav-link">
-                                <i class="fa fa-plus nav-icon"></i>
-                                <p>Thêm</p>
                             </a>
                         </li>
                     </ul>

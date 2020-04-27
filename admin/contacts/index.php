@@ -1,14 +1,23 @@
 <?php
 session_start();
+define('TITLE', 'Customer Feedbacks');
 require_once '../../config/utils.php';
 checkAdminLoggedIn();
-
+// dd($_SESSION[AUTH]['name']);
 $keyword = isset($_GET['keyword']) == true ? $_GET['keyword'] : "";
-$roleId = isset($_GET['role']) == true ? $_GET['role'] : false;
 
-// Lấy danh sách web_st
-$getWebsettingQuery = " select * from web_setting where id = 2";
-$websetting = queryExecute($getWebsettingQuery, false);
+// lấy danh sách contacts
+$getContactsQuery = "select c.* from contact c";
+
+// tìm kiếm
+if ($keyword !== "") {
+    $getContactsQuery .= " where (c.name like '%$keyword%'
+                            or c.phone like '%$keyword%'
+                            or c.email like '%$keyword%'
+                            or c.message like '%$keyword%')";
+}
+// dd($getContactsQuery);
+$contacts = queryExecute($getContactsQuery, true);
 
 ?>
 <!DOCTYPE html>
@@ -35,7 +44,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Quản trị web</h1>
+                            <h1 class="m-0 text-dark">Quản trị contacts</h1>
                         </div>
                         <!-- /.col -->
                         <div class="col-sm-6">
@@ -58,7 +67,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
                             <form action="" method="get">
                                 <div class="form-row">
                                     <div class="form-group col-6">
-                                        <input type="text" value="<?php echo $keyword ?>" class="form-control" name="keyword" placeholder="Nhập tên, ">
+                                        <input type="text" value="<?php echo $keyword ?>" class="form-control" name="keyword" placeholder="Nhập tên, email, số điện thoại, chủ đề,...">
                                     </div>
                                     <div class="form-group col-4">
                                         <select name="role" class="form-control">
@@ -66,8 +75,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
                                             <?php foreach ($roles as $ro) : ?>
                                                 <option <?php if ($roleId === $ro['id']) {
                                                             echo "selected";
-                                                        } ?> value="<?php echo $ro['id'] ?>"><?php echo $ro['name'] ?>
-                                                </option>
+                                                        } ?> value="<?php echo $ro['id'] ?>"><?php echo $ro['name'] ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -77,36 +85,49 @@ $websetting = queryExecute($getWebsettingQuery, false);
                                 </div>
                             </form>
                         </div>
-                        <!-- Danh sách users  -->
-                        <table class="table table-stripped">
-                            <thead>
+                        <!-- Danh sách contacts  -->
+                        <table class="table table-hover">
+                            <thead class="table-secondary">
                                 <th>ID</th>
-                                <th>Tên hotel</th>
-                                <th>Title_hotel</th>
-                                <th>logo</th>
-                                <th>
-                                    <a href="<?= ADMIN_URL . 'web_settings/add-form.php' ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
+                                <th>Tên</th>
+                                <th>SDT</th>
+                                <th>Email khách hàng</th>
+                                <th width=25%>Nội dung lời nhắn</th>
+                                <th>Trạng thái</th>
+                                <th width=10%>
+                                    Thao tác
                                 </th>
                             </thead>
                             <tbody>
-
-                                <tr>
-                                    <td><?= $websetting['id'] ?></td>
-                                    <td><?= $websetting['name'] ?></td>
-                                    <td><?= $websetting['title_hotel'] ?></td>
-                                    <td>
-                                        <img src="<?= BASE_URL . $websetting['logo']?>" alt="">
-                                    </td>
+                                <?php foreach ($contacts as $contact) : ?>
+                                    <tr>
+                                        <td><?php echo $contact['id'] ?></td>
+                                        <td><?php echo $contact['name'] ?></td>
+                                        <td><?php echo $contact['phone'] ?></td>
+                                        <td>
+                                            <?php echo $contact['email'] ?>
+                                        </td>
                                     
-                                    <td>
-                                        <a href="<?php echo ADMIN_URL . 'web_settings/edit-form.php?id=' . $websetting['id'] ?>" class="btn btn-sm btn-info">
-                                            <i class="fa fa-pencil-alt"></i>
-                                        </a>
-                                        <a href="<?php echo ADMIN_URL . 'web_settings/remove.php?id=' . $websetting['id'] ?>" class="btn-remove btn btn-sm btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                        <td><?php echo $contact['message'] ?></td>
+                                        <?php if ($contact['status'] == 0) { ?>
+                                            <td class="text-danger">Chưa trả lời</td>
+                                        <?php } else if ($contact['status'] == 1) { ?>
+                                            <td class="text-secondary"><span class="text-primary">Đã trả lời</span></td>
+                                        <?php } ?>
+                                        <td>
+                                            <?php if ($_SESSION[AUTH]['role_id'] > 1) : ?>
+                                                <a href="<?php echo ADMIN_URL . 'contacts/reply-form.php?id=' . $contact['id'] ?>" class="btn btn-sm btn-success">
+                                                    <i class="far fa-comment-dots"></i>
+                                                </a>
+                                            <?php endif; ?>
+                                            <?php if ($_SESSION[AUTH]['role_id'] > 1) : ?>
+                                                <a href="<?php echo ADMIN_URL . 'contacts/remove.php?id=' . $contact['id'] ?>" class="btn-remove btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -128,7 +149,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
                 var redirectUrl = $(this).attr('href');
                 Swal.fire({
                     title: 'Thông báo!',
-                    text: "Bạn có chắc chắn muốn xóa tài khoản này?",
+                    text: "Bạn có chắc chắn muốn xóa hộp thư này?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -141,8 +162,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
                 });
                 return false;
             });
-            <?php
-            if (isset($_GET['msg'])) : ?>
+            <?php if (isset($_GET['msg'])) : ?>
                 Swal.fire({
                     position: 'bottom-end',
                     icon: 'warning',
