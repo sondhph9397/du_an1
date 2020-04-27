@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 02, 2020 lúc 10:57 AM
+-- Thời gian đã tạo: Th4 27, 2020 lúc 11:14 AM
 -- Phiên bản máy phục vụ: 10.4.8-MariaDB
 -- Phiên bản PHP: 7.3.11
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `hotel`
+-- Cơ sở dữ liệu: `duan1`
 --
 
 -- --------------------------------------------------------
@@ -30,23 +30,32 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `booking` (
   `id` int(11) NOT NULL,
-  `checkin_date` varchar(255) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
+  `checkin_date` date DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `adults` varchar(255) DEFAULT NULL,
-  `chidren` varchar(255) DEFAULT NULL,
+  `children` varchar(255) DEFAULT NULL,
   `total_price` varchar(255) DEFAULT NULL,
+  `message` varchar(255) NOT NULL DEFAULT 'NULL',
   `created_date` varchar(255) DEFAULT NULL,
   `rely_by` int(11) DEFAULT NULL,
   `reply_message` varchar(255) DEFAULT NULL,
-  `checked_in` varchar(255) DEFAULT NULL,
-  `check_in_date` varchar(255) DEFAULT NULL,
-  `message` varchar(255) DEFAULT NULL,
+  `checked_in` timestamp NULL DEFAULT NULL,
+  `check_in_date` timestamp NULL DEFAULT NULL,
   `feedback_room` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `booking`
+--
+
+INSERT INTO `booking` (`id`, `checkin_date`, `name`, `email`, `phone_number`, `address`, `adults`, `children`, `total_price`, `message`, `created_date`, `rely_by`, `reply_message`, `checked_in`, `check_in_date`, `feedback_room`) VALUES
+(1, '0000-00-00', 'Son', 'son@gmail.com', '0123456789', 'Hà Nội', '1', '1', '', 'ik;kl;k', NULL, NULL, NULL, NULL, NULL, NULL),
+(2, '0000-00-00', 'Son', 'sonn@gmail.com', '0123456789', 'Hà Nội', '1', '1', '', 'fhgfxcfg', NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '0000-00-00', 'Son', 'abcd@gmail.com', '0123456789', 'Hà Nội', '2', '2', '', 'ytfgh', NULL, NULL, NULL, NULL, NULL, NULL),
+(4, '0000-00-00', 'Son', 'son@gmail.com', '0123456789', 'Hà Nội', '2', '2', '250$', 'trỷyt', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -60,11 +69,20 @@ CREATE TABLE `contact` (
   `email` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `message` varchar(255) DEFAULT NULL,
+  `status` int(11) NOT NULL,
   `reply_by` int(11) DEFAULT NULL,
-  `reply_content` varchar(255) DEFAULT NULL,
   `reply_for` varchar(255) DEFAULT NULL,
-  `created_at` varchar(255) DEFAULT NULL
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `contact`
+--
+
+INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `message`, `status`, `reply_by`, `reply_for`, `created_at`) VALUES
+(28, 'Son', 'son@gmail.com', '0123456789', '1', 1, 15, '28', '2020-04-26 16:47:04'),
+(35, 'Son', 'sondhph09397@fpt.edu.vn', '0123456789', 'a', 1, 15, '35', '2020-04-27 06:55:04'),
+(36, 'Vip', 'son@gmail.com', '0123456789', '1', 0, NULL, NULL, '2020-04-27 08:37:27');
 
 -- --------------------------------------------------------
 
@@ -154,10 +172,19 @@ INSERT INTO `roles` (`id`, `name`, `status`) VALUES
 --
 
 CREATE TABLE `room_galleries` (
-  `                id` int(11) NOT NULL,
-  `room_id` int(11) NOT NULL,
-  `img_url` int(11) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `room_id` varchar(255) NOT NULL,
+  `img_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `room_galleries`
+--
+
+INSERT INTO `room_galleries` (`id`, `room_id`, `img_url`) VALUES
+(11, 'Vip', 'public/admin/img/5e992c8d2c4ca-dich-vu-ghep-anh-chuyen-nghiep-hpconnect-2.jpg'),
+(12, 'Vip', 'public/admin/img/5e992c997000d-dich-vu-ghep-anh-chuyen-nghiep-hpconnect-2.jpg'),
+(13, 'dohongon', 'public/admin/img/5e992ca05ffe3-dich-vu-ghep-anh-chuyen-nghiep-hpconnect-2.jpg');
 
 -- --------------------------------------------------------
 
@@ -192,9 +219,9 @@ CREATE TABLE `room_types` (
 --
 
 INSERT INTO `room_types` (`id`, `name`, `featrue_image`, `status`, `short_desc`, `about`, `adults`, `children`) VALUES
-(24, 'Vip', 'public/admin/img/5e7f105fe9983-lmht-skt-chinh-thuc-chieu-mo-duoc-khan-va-haru1542882349.jpg', 'INACTIVE', 'LARGE CAFE', 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralizd of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bounds toOn the other hand, we denounce wi', NULL, NULL),
-(25, 'dohongon', 'public/admin/img/5e7f0d66de53c-ten-nhan-vat-game-audition-5.jpg', 'ACTIVE', 'LARGE CAFE', 'On the other hand, we denounce with righteous ini', 1, 1),
-(32, 'Sơn', 'public/admin/img/5e82fcb9c8704-INSIDE-1.jpg', 'INACTIVE', 'Spwn', 'Sơn', 1, 1);
+(24, 'Vip', 'public/admin/img/5e992d269e8ba-anh-dep-chup-dien-thoai.jpg', 'ACTIVE', 'LARGE CAFE', 'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralizd of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bounds toOn the other hand, we denounce', 1, 1),
+(34, 'ádsa', 'public/admin/img/5e9935442093f-anh-dep-chup-dien-thoai.jpg', 'ACTIVE', 'ádasádsad', 'ádsa', 1, 1),
+(35, 'Son', 'public/admin/img/5ea457286c226-anh-dep-chup-dien-thoai.jpg', 'ACTIVE', '21312', 'esdsad', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -243,7 +270,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `number_phone`, `email`, `password`, `status`, `role_id`) VALUES
 (5, 'Sơn', '123123123123', 'son@gmail.com', '$2y$10$fFhWJhzJcQMfiAoeL7337uNVb.lFSUxlhiWyauAoewVOGKAU7e4Yi', '1', 3),
-(12, 'fdfsdgsdg', '65', 'than@gmail.com', '$2y$10$P.o0MF2LI88MmW4M5XfGxeV7uB/XtS.rbVGHW8F2v58PJxfkYCth.', '1', 1);
+(12, 'than', '65123123', 'than@gmail.com', '$2y$10$P.o0MF2LI88MmW4M5XfGxeV7uB/XtS.rbVGHW8F2v58PJxfkYCth.', '1', 1),
+(15, 'Son', '1234567890', 'sonn@gmail.com', '$2y$10$3jxwNh/s/mHn5ekZC9hH/.1y7L5lb2xAvuWo5H2fR3K/mamYUq1ca', '1', 1),
+(16, 'Son', '1234567890', 'son1@gmail.com', '$2y$10$7c/p6tccZLn3c6GIrc4sh.6cMmQM0AHIUePGNdL/7T2g89IqzgSCG', '1', 1),
+(17, 'Sonn', '1234567890', 'son2@gmail.com', '$2y$10$SaIGrcwqA30eWnzH.7Sw4uIZMvrLPv/wiEzCPZUlL9K5g0WNCEsvi', '1', 3);
 
 -- --------------------------------------------------------
 
@@ -254,9 +284,9 @@ INSERT INTO `users` (`id`, `name`, `number_phone`, `email`, `password`, `status`
 CREATE TABLE `web_setting` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `title_hotel` varchar(255) NOT NULL,
+  `title_hotel` varchar(255) DEFAULT NULL,
   `logo` varchar(255) DEFAULT NULL,
-  `small-logo` varchar(255) NOT NULL,
+  `small_logo` varchar(255) DEFAULT NULL,
   `hotline` varchar(255) DEFAULT NULL,
   `map_url` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -273,8 +303,8 @@ CREATE TABLE `web_setting` (
 -- Đang đổ dữ liệu cho bảng `web_setting`
 --
 
-INSERT INTO `web_setting` (`id`, `name`, `title_hotel`, `logo`, `small-logo`, `hotline`, `map_url`, `email`, `background_img`, `slogan`, `slogan_author`, `intro_youtube_url`, `intro_content`, `about_page_title`, `about_page_content`) VALUES
-(2, 'HOTEL KINGCLUB', 'PERFECT HOTEL', 'logo.png', 'banner-logo.png', '807 302 2186', 'Green lake, Hotel plaza\r\nnew york, USA', 'mail@domain.com', 'banner-bg.jpg', 'content here making look like readable English. Many desktop publishing packages and apage editors now use Lorem Ipsum as their default point of using is that it has a more or less normal distribution of letters, as opposed to using content here', 'sign.jpg', 'https://www.youtube.com/watch?v=hEq2qDKYe3s', NULL, NULL, NULL);
+INSERT INTO `web_setting` (`id`, `name`, `title_hotel`, `logo`, `small_logo`, `hotline`, `map_url`, `email`, `background_img`, `slogan`, `slogan_author`, `intro_youtube_url`, `intro_content`, `about_page_title`, `about_page_content`) VALUES
+(2, 'HOTEL KINGCLUB', 'PERFECT HOTEL', 'public/admin/img/5ea51ec6938ad-logo.png', 'public/admin/img/5ea51ec693af9-banner-logo.png', '807 302 2186', 'Green lake, Hotel plazanew york, USA', 'mail@domain.com', 'public/admin/img/5ea51ec693d4f-banner-bg-2.jpg', 'content here making look like readable English. Many desktop publishing packages and apage editors now use Lorem Ipsum as their default point of using is that it has a more or less normal distribution of letters, as opposed to using content here', 'public/admin/img/5ea51ec693fd3-sign.jpg', 'https://www.youtube.com/watch?v=hEq2qDKYe3s', NULL, NULL, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -326,7 +356,7 @@ ALTER TABLE `roles`
 -- Chỉ mục cho bảng `room_galleries`
 --
 ALTER TABLE `room_galleries`
-  ADD PRIMARY KEY (`                id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `room_service`
@@ -372,13 +402,13 @@ ALTER TABLE `web_setting`
 -- AUTO_INCREMENT cho bảng `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `contact`
 --
 ALTER TABLE `contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT cho bảng `custom_feedback`
@@ -414,7 +444,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT cho bảng `room_galleries`
 --
 ALTER TABLE `room_galleries`
-  MODIFY `                id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT cho bảng `room_service`
@@ -426,7 +456,7 @@ ALTER TABLE `room_service`
 -- AUTO_INCREMENT cho bảng `room_types`
 --
 ALTER TABLE `room_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT cho bảng `services`
@@ -444,13 +474,13 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT cho bảng `web_setting`
 --
 ALTER TABLE `web_setting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
