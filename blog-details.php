@@ -3,6 +3,9 @@ session_start();
 require_once "./config/utils.php";
 
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+
+$getNewsQuery = "select * from news where id = 2";
+$news = queryExecute($getNewsQuery,false);
 ?>
 
 
@@ -49,32 +52,23 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
         <div class="row">
           <div class="col-md-offset-2 col-md-8">
             <article>
-              <h1>HOTEL BOWLING CLUB</h1>
+              <h1><?= $news['title']?></h1>
               <div>
                 <ol class="breadcrumb">
-                  <li><time datetime="2016-05-20">MAY 20, 2016</time></li>
+                  <li><?= $news['created_at'] ?></li>
                   <li class="active"><a href="#">ADMIN</a></li>
                   <li><a href="#">COMMENT<span> 3</span></a></li>
                 </ol>
               </div>
-              <p>Blinded by desire, that they cannot foresee the pain and trouble that are bounds to ensure blames belongs to those a weakness of will, which is the same therefore always holds in these matters to this princple of selection and he amon and the other hand, we denounce with righteous indignation and dislike mens who are so begueled and demoralized</p>
-              <p>Blinded by desire, that they cannot foresee the pain and trouble that are bounds to ensure blames belongs to those a weakness of will, which is the same therefore always</p>
-              <blockquote>
-                <p>Making readable English desktop publishing packages editors it has a normal distribution as oppo</p>
-              </blockquote>
-              <p>Blinded by desire, that they cannot foresee the pain and trouble that are bounds to ensure blames belongs to those a weakness of will, which is the same therefore always holds in these matters to this princple of selection and he amon and the other hand, we denounce with righteous</p>
+              <p><?= $news['content']?></p>
               <div class="blog-img">
                 <div class="row">
                 <div class="col-md-6 col-sm-6 rq-single-img-left">
-                  <img src="<?= ADMIN_ASSET_URL ?>img/blog-details-post-img-1.jpg" alt="" class="img-responsive">
-                </div>
-                <div class="col-md-6 col-sm-6 padding-left rq-single-img-right">
-                  <img src="<?= ADMIN_ASSET_URL ?>img/blog-details-post-img-2.jpg" alt="" class="img-responsive">
+                  <img src="<?= BASE_URL . $news['featrue_image'] ?>" alt="" class="img-responsive">
                 </div>
               </div>
               </div>
-              <p>Blinded by desire, that they cannot foresee the pain and trouble that are bounds to ensure blames belongs to those a weakness of will, which is the same therefore always holds in these matters to this princple of selection and he amon and the other hand, we denounce with righteous indignation and dislike mens who are so begueled and demoralized. blinded by desire, that they cannot foresee the pain and trouble that are bounds to ensure blames belongs to those a weakness of will, which is the same therefore always holds in these matters to this princple of selection and he reject</p>
-              <p>Blinded by desire, that they cannot foresee the pain and trouble that are bounds to ensure blames belongs to those a weakness of will, which is the same therefore always</p>
+              <p><?= $news['content']?></p>
               <div class="nav-bottom">
                 <a class="btn btn-flat-text" href="#" role="button">ROOM</a>
                 <a class="btn btn-flat-text" href="#" role="button">HOTEL</a>
