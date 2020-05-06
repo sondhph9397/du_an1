@@ -49,7 +49,8 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
                     <div class="row">
                         <div class="col-md-8 col-sm-8">
                             <h2>send a message</h2>
-                            <form action="<?= ADMIN_URL . 'contacts/save-contact.php' ?>" method="post" id="add-contact">
+                            <form id="add-contact-form" action="<?= ADMIN_URL . 'contacts/save-contact.php' ?>"
+                                method="post" id="add-contact">
                                 <input type="text" name="name" id="rq-contact-name" placeholder="Name">
                                 <input type="email" name="email" id="rq-contact-email" placeholder="Email">
                                 <input type="text" name="phone" id="rq-contact-web" placeholder="Number phone">
@@ -105,8 +106,57 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
         <?php require_once "./public/_share/footer.php"?>
     </div><!-- main-wrapper -->
     <?php require_once "./public/_share/script.php"; ?>
+    <?php require_once "./admin/_share/script.php" ?>
 </body>
 
 <!-- Mirrored from redqteam.com/sites/houston/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 24 Mar 2020 06:52:20 GMT -->
 
 </html>
+<script>
+$('#add-contact-form').validate({
+    rules: {
+        name: {
+            required: true,
+            maxlength: 191,
+            minlength: 2
+        },
+        email: {
+            required: true,
+            maxlength: 191,
+            email: true
+        },
+        phone: {
+            required: true,
+            maxlength: 10,
+            minlength: 10,
+            number: true
+        },
+        message: {
+            required: true,
+            maxlength: 255
+        }
+    },
+    messages: {
+        name: {
+            required: "hãy nhập tên bạn",
+            maxlength: "kí tự không qá 191",
+            minlength: "tên từ 2 ký tự trở lên"
+        },
+        email: {
+            required: "hãy nhập email",
+            maxlength: "tiêu đề không quá 191 kí tự",
+            email: "email không hợp lệ"
+        },
+        phone: {
+            required: "hãy nhập số điện thoại",
+            maxlength: "số điện thoại không quá 10 số",
+            minlength: "số điện thoại phải 10 số "
+        },
+        message: {
+            required: "hãy nhập nội dung",
+            maxlength: "độ dài không quá 255 kí tự"
+        }
+    }
+
+});
+</script>

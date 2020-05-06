@@ -6,6 +6,9 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 //lấy dữ liệu bảng web_settings
 $getWebsettingQuery = " select * from web_setting where id = 2";
 $websetting = queryExecute($getWebsettingQuery, false);
+
+$getFeedbackQuery = "select * from custom_feedback";
+$feed = queryExecute($getFeedbackQuery,true);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -263,25 +266,16 @@ $websetting = queryExecute($getWebsettingQuery, false);
         <div class="container ">
             <div class="rq-owl-carousel-content">
                 <div class="owl-carousel">
+                    <?php foreach($feed as $fe): ?>
                     <div class="rq-content-making-item">
                         <div class="rq-content-logo text-center center-block">
                             <i class="fa fa-quote-right" aria-hidden="true"></i>
                         </div>
-                        <p class="text-center">Content making readable English desktop publishing packages editors point
-                            using is that making readable English desktop publishing packages editors point using it has
-                            a normal distribution as oppo</p>
-                        <p class="rq-special text-center">ADRAIN SMITH</p>
+                        <p class="text-center"><?= $fe['comment']?> </p>
+                        <p class="rq-special text-center"><?= $fe['name'] ?> </p>
                     </div>
-                    <div class="rq-content-making-item">
-                        <div class="rq-content-logo text-center center-block">
-                            <i class="fa fa-quote-right" aria-hidden="true"></i>
-                        </div>
-                        <p class="text-center">Content making readable English desktop publishing packages editors point
-                            using is making readable English desktop publishing packages editors point using it has a
-                            normal distribution as oppo</p>
-                        <p class="rq-special text-center">ADRAIN SMITH</p>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
+                </div>           
             </div>
         </div>
         <!------/container -------->

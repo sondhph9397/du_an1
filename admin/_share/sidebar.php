@@ -157,6 +157,23 @@
                     </ul>
                 </li>
                 <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-comments"></i>
+                        <p>
+                            Đánh Giá
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?= ADMIN_URL . 'feedback' ?>" class="nav-link">
+                                <i class="fa fa-list-ol nav-icon"></i>
+                                <p>Danh sách</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview">
                     <a href="<?= BASE_URL . 'login/logout.php' ?>" class="nav-link">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>

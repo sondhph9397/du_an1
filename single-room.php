@@ -253,11 +253,11 @@ $room = queryExecute($getRoomQuery, false);
                                 <div class="row">
                                     <div class="rq-submit-review-form-wrapper">
                                         <h2>Submit review</h2>
-                                        <form action="#">
+                                        <form id="add-feedback" action="<?= ADMIN_URL . 'feedback/save-add.php'?>" method="post" enctype="multipart/form-data">
                                             <div class="rq-review-form col-md-8 col-sm-12">
-                                                <input type="text" class="form-control" placeholder="Name">
-                                                <input type="text" class="form-control" placeholder="Email">
-                                                <textarea class="form-control" rows="5" placeholder="Your Comment"></textarea>
+                                                <input type="text" name="name" class="form-control" placeholder="Name">
+                                                <input type="text" name="email" class="form-control" placeholder="Email">
+                                                <textarea class="form-control" name="comment" rows="5" placeholder="Your Comment"></textarea>
                                             </div>
 
                                             <div class="rq-review col-md-4 col-sm-12 col-xs-12">
@@ -269,25 +269,6 @@ $room = queryExecute($getRoomQuery, false);
                                                         <p>Service</p>
                                                     </div>
                                                 </div>
-                                                <!--------/rq-review-custom------>
-                                                <div class="rq-review-custom">
-                                                    <div class="rq-review-left">
-                                                        <div class="rq-service-rating"></div>
-                                                    </div>
-                                                    <div class="rq-review-right">
-                                                        <p>Food</p>
-                                                    </div>
-                                                </div>
-                                                <!--------/rq-review-custom------>
-                                                <div class="rq-review-custom">
-                                                    <div class="rq-review-left">
-                                                        <div class="rq-service-rating"></div>
-                                                    </div>
-                                                    <div class="rq-review-right">
-                                                        <p>Guide</p>
-                                                    </div>
-                                                </div>
-                                                <!--------/rq-review-custom------>
                                                 <h6><span>4.5</span></h6>
                                             </div>
                                             <button class="rq-btn-primary" type="submit">submit</button>
@@ -312,3 +293,41 @@ $room = queryExecute($getRoomQuery, false);
 <!-- Mirrored from redqteam.com/sites/houston/single-room.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Mar 2020 05:56:22 GMT -->
 
 </html>
+<script>
+    $('#add-feedback').validate({
+    rules: {
+        name: {
+            required: true,
+            maxlength: 191,
+            minlength: 2
+        },
+        email: {
+            required: true,
+            maxlength: 191,
+            email: true
+        },
+        comment: {
+            required: true,
+            maxlength: 255
+        }
+    },
+    messages: {
+        name: {
+            required: "hãy nhập tên bạn",
+            maxlength: "kí tự không qá 191",
+            minlength: "tên từ 2 ký tự trở lên"
+        },
+        email: {
+            required: "hãy nhập email",
+            maxlength: "tiêu đề không quá 191 kí tự",
+            email: "email không hợp lệ"
+        },
+        comment: {
+            required: "hãy nhập nội dung",
+            maxlength: "độ dài không quá 255 kí tự"
+        }
+    }
+
+});
+</script>
+</script>

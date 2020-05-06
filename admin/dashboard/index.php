@@ -26,6 +26,9 @@ $contact = queryExecute($getAllContactSql, true);
 $getAllBookingSql = "select * from booking";
 $booking = queryExecute($getAllBookingSql, true);
 
+$getAllFeedbackSql = "select * from custom_feedback";
+$feed = queryExecute($getAllFeedbackSql,true);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -131,7 +134,7 @@ $booking = queryExecute($getAllBookingSql, true);
                         <!-- ./col -->
                         <div class="col-lg-4 col-6">
                             <!-- small box -->
-                            <div class="small-box bg-danger">
+                            <div class="small-box bg-info">
                                 <div class="inner">
                                     <h3><?= count($web) ?></h3>
                                     <p>Web Setting</p>
@@ -154,6 +157,23 @@ $booking = queryExecute($getAllBookingSql, true);
                                 <i class="fas fa-money-check-alt nav-icon"></i>
                                 </div>
                                 <a href="<?= ADMIN_URL . 'booking' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                          <!-- ./col -->
+                          <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-secondary">
+                                <div class="inner">
+                                    <h3><?= count($feed) ?></h3>
+
+                                    <p>Đánh Giá</p>
+                                </div>
+                                <div class="icon">
+                                <i class="nav-icon fas fa-comments"></i>
+                                </div>
+                                <a href="<?= ADMIN_URL . 'feedback' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>

@@ -334,7 +334,7 @@ $room = queryExecute($getRoomQuery, true);
                           <div class="singleRoom-grid-main-custom">
                             <div class="row">
                               <h4><span>$250 </span> / Night</h4>
-                              <h5> <a class="btn rq-btn-secondary" href="#" data-toggle="modal" data-target="#myModal">SELECT</a></h5>
+                              <h5> <a class="btn rq-btn-secondary" href="single-room.php" >SELECT</a></h5>
                             </div>
                           </div>
                         </div>

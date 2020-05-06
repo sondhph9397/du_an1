@@ -11,7 +11,7 @@ $email = $_POST['email'];
 $message = $_POST['message'];
 $id = $_POST['id'];
 $reply_by = $_POST['reply_by'];
-
+$reply = $_POST['reply'];
 $listname = explode(",", $email);
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -46,7 +46,7 @@ try {
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Body    = $message;
+    $mail->Body    = $reply;
     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
