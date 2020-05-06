@@ -111,7 +111,7 @@ $feed = queryExecute($getFeedbackQuery,true);
                                                 <span class="special-check-color text-center">
                                                     <i class="fa fa-angle-right" aria-hidden="true"></i>
                                                 </span>
-                                                <span>CHECKOUT</span>
+                                               <a href="select-room-grid.php"><span>CHECKOUT</span></a> 
                                             </button>
                                         </div>
                                     </div>
