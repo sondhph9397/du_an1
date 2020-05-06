@@ -3,23 +3,23 @@ session_start();
 require_once '../../config/utils.php';
 checkAdminLoggedIn();
 
-# Lấy ra tất cả bản ghi trong bảng users
+
 $getAllMemberSql = "select * from users where role_id = 1";
 $users = queryExecute($getAllMemberSql, true);
 
-# Lấy ra tất cả các bản ghi trong bảng vehicles
+
 $getAllRoomSql = "select * from room_types";
 $room = queryExecute($getAllRoomSql, true);
 
-# Lấy ra tất cả các bản ghi trong bảng vehicle type
+
 $getAllRoomGalleriesSql = "select * from room_galleries";
 $roomgalleries = queryExecute($getAllRoomGalleriesSql, true);
 
-# Lấy ra tất cả các bản ghi trong bảng routes
+
 $getAllWebSql = "select * from web_setting";
 $web = queryExecute($getAllWebSql, true);
 
-# Lấy ra tất cả các bản ghi trong bảng shedules
+
 $getAllContactSql = "select * from contact";
 $contact = queryExecute($getAllContactSql, true);
 
@@ -28,6 +28,9 @@ $booking = queryExecute($getAllBookingSql, true);
 
 $getAllFeedbackSql = "select * from custom_feedback";
 $feed = queryExecute($getAllFeedbackSql,true);
+
+$getAllNewsSql = "select * from news";
+$news = queryExecute($getAllNewsSql,true);
 
 ?>
 <!DOCTYPE html>
@@ -82,7 +85,8 @@ $feed = queryExecute($getAllFeedbackSql,true);
                                 <div class="icon">
                                     <i class="fa fa-users"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'users' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="<?= ADMIN_URL . 'users' ?>" class="small-box-footer">Chi tiết <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -94,9 +98,10 @@ $feed = queryExecute($getAllFeedbackSql,true);
                                     <p>Loại Phòng</p>
                                 </div>
                                 <div class="icon">
-                                <i class="fas fa-home"></i>
+                                    <i class="fas fa-home"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'rooms' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="<?= ADMIN_URL . 'rooms' ?>" class="small-box-footer">Chi tiết <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -108,9 +113,10 @@ $feed = queryExecute($getAllFeedbackSql,true);
                                     <p>Ảnh Phòng</p>
                                 </div>
                                 <div class="icon">
-                                <i class="fas fa-images"></i>
+                                    <i class="fas fa-images"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'schedules/' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="<?= ADMIN_URL . 'schedules/' ?>" class="small-box-footer">Chi tiết <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -126,9 +132,10 @@ $feed = queryExecute($getAllFeedbackSql,true);
                                     <p>Contact</p>
                                 </div>
                                 <div class="icon">
-                                <i class="nav-icon fas fa-id-card"></i>
+                                    <i class="nav-icon fas fa-id-card"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'contacts' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="<?= ADMIN_URL . 'contacts' ?>" class="small-box-footer">Chi tiết <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -140,9 +147,10 @@ $feed = queryExecute($getAllFeedbackSql,true);
                                     <p>Web Setting</p>
                                 </div>
                                 <div class="icon">
-                                <i class="fab fa-internet-explorer"></i>
+                                    <i class="fab fa-internet-explorer"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'web_settings' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="<?= ADMIN_URL . 'web_settings' ?>" class="small-box-footer">Chi tiết <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -154,15 +162,16 @@ $feed = queryExecute($getAllFeedbackSql,true);
                                     <p>Đặt phòng</p>
                                 </div>
                                 <div class="icon">
-                                <i class="fas fa-money-check-alt nav-icon"></i>
+                                    <i class="fas fa-money-check-alt nav-icon"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'booking' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="<?= ADMIN_URL . 'booking' ?>" class="small-box-footer">Chi tiết <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                          <!-- ./col -->
-                          <div class="col-lg-4 col-6">
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
                             <!-- small box -->
                             <div class="small-box bg-secondary">
                                 <div class="inner">
@@ -171,9 +180,26 @@ $feed = queryExecute($getAllFeedbackSql,true);
                                     <p>Đánh Giá</p>
                                 </div>
                                 <div class="icon">
-                                <i class="nav-icon fas fa-comments"></i>
+                                    <i class="nav-icon fas fa-comments"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'feedback' ?>" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="<?= ADMIN_URL . 'feedback' ?>" class="small-box-footer">Chi tiết <i
+                                        class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                         <!-- ./col -->
+                         <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3><?= count($news) ?></h3>
+
+                                    <p>Tin Tức</p>
+                                </div>
+                                <div class="icon">
+                                <i class="nav-icon fas fa-newspaper"></i>
+                                </div>
+                                <a href="<?= ADMIN_URL . 'news' ?>" class="small-box-footer">Chi tiết <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>

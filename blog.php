@@ -58,7 +58,7 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 
               <div class="rq-blog-item-details">
                 <h3>
-                  <a href="blog-details.html">lets drink cofee</a>
+                  <a href="blog-details.php">lets drink cofee</a>
                 </h3>
                 <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demo of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bou denounce with righteous dream</p>
                 <span class="rq-blog-post-date">March 20, 2016</span>
@@ -77,7 +77,7 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 
               <div class="rq-blog-item-details">
                 <h3>
-                  <a href="blog-details.html">lets drink cofee</a>
+                  <a href="blog-details.php">lets drink cofee</a>
                 </h3>
                 <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demo of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bou denounce with righteous dream</p>
                 <span class="rq-blog-post-date">March 20, 2016</span>
@@ -96,7 +96,7 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 
               <div class="rq-blog-item-details">
                 <h3>
-                  <a href="blog-details.html">lets drink cofee</a>
+                  <a href="blog-details.php">lets drink cofee</a>
                 </h3>
                 <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demo of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bou denounce with righteous dream</p>
                 <span class="rq-blog-post-date">March 20, 2016</span>
@@ -115,7 +115,7 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 
               <div class="rq-blog-item-details">
                 <h3>
-                  <a href="blog-details.html">lets drink cofee</a>
+                  <a href="blog-details.php">lets drink cofee</a>
                 </h3>
                 <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demo of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bou denounce with righteous dream</p>
                 <span class="rq-blog-post-date">March 20, 2016</span>
@@ -134,7 +134,7 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 
               <div class="rq-blog-item-details">
                 <h3>
-                  <a href="blog-details.html">lets drink cofee</a>
+                  <a href="blog-details.php">lets drink cofee</a>
                 </h3>
                 <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demo of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bou denounce with righteous dream</p>
                 <span class="rq-blog-post-date">March 20, 2016</span>
