@@ -4,11 +4,11 @@ require_once "../../config/utils.php";
 checkAdminLoggedIn();
 
 $id = isset($_GET['id']) ? $_GET['id'] : -1;
-$getContact = "select * from contact where id = $id";
-$contact = queryExecute($getContact, false);
+$getBooking = "select * from booking where id = $id";
+$booking = queryExecute($getBooking, false);
 
-if (!$contact) {
-    header('location:' . ADMIN_URL . 'contacts?msg=Liên hệ không tồn tại');
+if (!$booking) {
+    header('location:' . ADMIN_URL . 'booking?msg=không tồn tại');
     die;
 }
 ?>
@@ -42,9 +42,9 @@ if (!$contact) {
 
             <!-- Main content -->
             <section class="content">
-                <form action="<?= ADMIN_URL . 'contacts/save-reply.php' ?>" id="answer-form" method="post"
+                <form action="<?= ADMIN_URL . 'booking/save-reply.php' ?>" id="answer-form" method="post"
                     enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="<?= $contact['id'] ?>">
+                    <input type="hidden" name="id" value="<?= $booking['id'] ?>">
                     <div class="container-fluid">
                         <div class="form-group" hidden>
                             <input type="text" name="reply_by" class="form-control"
@@ -55,24 +55,24 @@ if (!$contact) {
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="">Tên người gửi</label>
+                                            <label for="">Tên người đặt</label>
                                             <input type="text" name="name" class="form-control"
-                                                value="<?= $contact['name'] ?>">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="">Số điện thoại</label>
-                                            <input type="text" name="phone" class="form-control"
-                                                value="<?= $contact['phone'] ?>">
+                                                value="<?= $booking['name'] ?>" disabled>
                                         </div>
                                         <div class="form-group">
                                             <label for="">Email</label>
                                             <input type="text" name="email" class="form-control"
-                                                value="<?= $contact['email'] ?>">
+                                                value="<?= $booking['email'] ?>">
                                         </div>
                                         <div class="form-group">
-                                            <label for="">Lời nhắn</label>
-                                            <textarea name="message" class="form-control" id="" cols="30"
-                                                rows="10"><?= $contact['message'] ?></textarea>
+                                            <label for="">Ngày đặt</label>
+                                            <input type="text" name="check_in" class="form-control"
+                                                value="<?= $booking['check_in'] ?>" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Ngày trả</label>
+                                            <input type="text" name="check_out" class="form-control"
+                                                value="<?= $booking['check_out'] ?>" disabled>
                                         </div>
                                     </div>
                                 </div>
@@ -81,15 +81,25 @@ if (!$contact) {
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-group">
+                                            <label for="">Loại phòng</label>
+                                            <input type="text" name="room_types" class="form-control"
+                                                value="<?= $booking['room_stype'] ?>" disabled>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Thành tiền</label>
+                                            <input type="text" name="total_price" class="form-control"
+                                                value="$<?= $booking['total_price'] ?>" disabled>
+                                        </div>
+                                        <div class="form-group">
                                             <label for="">Trả lời</label>
-                                            <textarea name="reply" class="form-control" id="" cols="30"
-                                                rows="10"></textarea>
+                                            <textarea name="reply_message" class="form-control" id="" cols="30"
+                                                rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 d-flex justify-content-start">
                                     <button type="submit" class="btn btn-primary">Lưu</button>&nbsp;
-                                    <a href="<?= ADMIN_URL . 'contacts' ?>" class="btn btn-danger">Hủy</a>
+                                    <a href="<?= ADMIN_URL . 'booking' ?>" class="btn btn-danger">Hủy</a>
                                 </div>
                             </div>
                         </div>

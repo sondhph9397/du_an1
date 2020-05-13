@@ -289,7 +289,7 @@ $feed = queryExecute($getFeedbackQuery,true);
     <script>
         <?php if (isset($_GET['msg'])) : ?>
             Swal.fire({
-                    position: 'bottom-end',
+                    position: 'center',
                     icon: 'success',
                     title: "<?= $_GET['msg']; ?>",
                     showConfirmButton: false,

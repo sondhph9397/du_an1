@@ -74,10 +74,10 @@ $room = queryExecute($getRoomQuery, false);
             <div class="rq-cart-table">
               <table class="table" style="width:100%;">
                 <tr class="rq-table-heading" style="text-align: left;">
-                  <th>Product</th>
-                  <th class="rq-align">Price</th>
-                  <th class="rq-align">Quantity</th>
-                  <th class="rq-align">total</th>
+                  <th>Dịch vụ</th>
+                  <th class="rq-align">Giá</th>
+                  <th class="rq-align">Số Ngày</th>
+                  <th class="rq-align">Thành tiền</th>
                 </tr>
                 <tr class="rq-table-border">
                   <td class="rq-cart-row">
@@ -86,14 +86,12 @@ $room = queryExecute($getRoomQuery, false);
                   <td class="rq-align"><span>$<?= $room['price'] ?></span> </td>
                   <td class="rq-align rq-color">
                     <?php
-                    $date1 = date_create($booking['check_in']);
-                    $date2 = date_create($booking['check_out']);
-                    $diff = date_diff($date1, $date2);
-                    $a = $diff->format('%a');
-                    echo $a;
+                  $diff = strtotime($booking['check_out']) - strtotime($booking['check_in']);
+                  $total_date = round($diff / (60 * 60 * 24));
+                  echo $total_date;
                     ?> </td>
                   <td class="rq-align"><span><?php
-                                              $total = $a * $room['price'];
+                                              $total = $total_date * $room['price'];
                                               echo $total;
                                               ?></span> </td>
                 </tr>

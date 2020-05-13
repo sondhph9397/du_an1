@@ -4,6 +4,7 @@ define('TITLE', 'Đặt phòng');
 require_once '../../config/utils.php';
 checkAdminLoggedIn();
 // get keywords
+$keyword = isset($_GET['keyword']) == true ? $_GET['keyword'] : "";
 
 $getBookingQuery = "select * from booking";
 $booking = queryExecute($getBookingQuery,true);
@@ -56,7 +57,7 @@ $booking = queryExecute($getBookingQuery,true);
                             <form action="" method="get">
                                 <div class="form-row">
                                     <div class="form-group col-6">
-                                        <input type="text" value="" class="form-control" name="keyword" placeholder="Nhập tên, nội dung dịch vụ...">
+                                        <input type="text" value="<?= $keyword ?>" class="form-control" name="keyword" placeholder="Nhập tên, nội dung dịch vụ...">
                                     </div>
                                     <div class="form-group col-4">
                                         <select name="statusSearch" class="form-control">
@@ -94,11 +95,16 @@ $booking = queryExecute($getBookingQuery,true);
                                             <td><?php echo $book['email'] ?></td>
                                             <td><?php echo $book['check_in'] ?></td>
                                             <td><?php echo $book['check_out'] ?></td>
-                                            <td><?php echo $book['room_id'] ?></td>
+                                            <td><?php echo $book['room_stype'] ?></td>
                                             <td><?= $book['adults'] ?></td>
                                             <td><?= $book['children'] ?></td>
                                             <td><?= $book['total_price']?></td>
                                             <td>
+                        
+                                                <a href="<?php echo ADMIN_URL . 'booking/reply-form.php?id=' . $book['id'] ?>" class="btn btn-sm btn-success">
+                                                    <i class="far fa-comment-dots"></i>
+                                                </a>
+                                           
                                                 <a href="<?php echo ADMIN_URL . 'booking/remove.php?id=' . $book['id'] ?>" class="btn-remove btn btn-sm btn-danger">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
@@ -146,7 +152,7 @@ $booking = queryExecute($getBookingQuery,true);
             });
             <?php if (isset($_GET['msg'])) : ?>
                 Swal.fire({
-                    position: 'bottom-end',
+                    position: 'center',
                     icon: 'success',
                     title: "<?= $_GET['msg']; ?>",
                     showConfirmButton: false,

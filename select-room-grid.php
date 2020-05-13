@@ -329,7 +329,7 @@ $room = queryExecute($getRoomQuery, true);
                           <img alt="Image" src="<?= BASE_URL . $ro['featrue_image'] ?>" />
                         </picture>
                         <div class="caption">
-                          <h3><a href="single-room.php"><?= $ro['name'] ?></a></h3>
+                          <h3><a href="single-room.php?id=<?= $ro['id'] ?>"><?= $ro['name'] ?></a></h3>
                           <p><?= $ro['short_desc'] ?></p>
                           <div class="singleRoom-grid-main-custom">
                             <div class="row">

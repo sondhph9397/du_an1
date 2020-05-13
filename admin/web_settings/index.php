@@ -144,7 +144,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
             <?php
             if (isset($_GET['msg'])) : ?>
                 Swal.fire({
-                    position: 'bottom-end',
+                    position: 'center',
                     icon: 'warning',
                     title: "<?= $_GET['msg']; ?>",
                     showConfirmButton: false,

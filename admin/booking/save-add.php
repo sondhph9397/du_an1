@@ -21,8 +21,11 @@ $roomerr = "";
 $diff = strtotime($check_out) - strtotime($check_in);
 // tính ngày chênh lệch của ngày checkout với ngày checkin
 $total_date = round($diff / (60 * 60 * 24));
+// lấy timestamp hiện tại
 $today = date("m/d/Y");
+//hiệu timestamp của ngày checkin với ngày hiện tại
 $diff_today = strtotime($check_in) - strtotime($today);
+//tính ngày chênh lệch của ngày checkin với ngày hiện tại
 $total_today = round($diff_today / (60 * 60 * 24));
 
 
@@ -41,29 +44,23 @@ if (strlen($check_out) == 0) {
 if ($checkinerr . $checkouterr != "") {
     header('location:' . BASE_URL . "single-room.php?id=$room_id&&checkinerr=$checkinerr&&checkouterr=$checkouterr");
     die;
-} else {
-    $getRoomPriceQuery = "select * from room_types where id = '$room_id'";
-    $roomPrice = queryExecute($getRoomPriceQuery, false);
+}
 
-    $date1 = date_create($check_in);
-    $date2 = date_create($check_out);
+$getRoomPriceQuery = "select * from room_types where id = '$room_id'";
+$roomPrice = queryExecute($getRoomPriceQuery, false);
 
-    $diff = date_diff($date1, $date2);
-    $total_date = $diff->format('%a');
+$totalPrice = $total_date * $roomPrice['price'];
 
-
-    $total = $total_date * $roomPrice['price'];
-    // query upload to DB
-    $insertBookingQuery = "insert into booking
+// query upload to DB
+$insertBookingQuery = "insert into booking
                                 (check_in, check_out, name, email, room_stype, room_id, adults, children, total_price)
                           values
-                                ('$check_in','$check_out', '$name', '$email', '$room_stype', '$room_id', '$adult', '$children', '$total')";
-    // dd($insertBookingQuery);
-    queryExecute($insertBookingQuery, false);
+                                ('$check_in','$check_out', '$name', '$email', '$room_stype', '$room_id', '$adult', '$children', '$totalPrice')";
 
-    $getBookingQuery = "select * from booking where room_id = $room_id order by id desc";
-    $booking = queryExecute($getBookingQuery, false);
+queryExecute($insertBookingQuery, false);
+// dd($insertBookingQuery);
+$getBookingQuery = "select * from booking where room_id = $room_id order by id desc";
+$booking = queryExecute($getBookingQuery, false);
 
-    header("location: " . BASE_URL . "cart.php?id=" . $booking['id'] .'&msg=Bạn đã đặt phòng thành công');
-    die;
-}
+header("location: " . BASE_URL . "cart.php?id=" . $booking['id'] . '&msg=Bạn đã đặt phòng thành công');
+die;

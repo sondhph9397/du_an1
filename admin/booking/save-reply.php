@@ -3,15 +3,14 @@ session_start();
 require '../../config/utils.php';
 checkAdminLoggedIn();
 // Require libraries PHP Mailer
-require './lib/PHPMailer/src/Exception.php';
-require './lib/PHPMailer/src/PHPMailer.php';
-require './lib/PHPMailer/src/SMTP.php';
+require '../contacts/lib/PHPMailer/src/Exception.php';
+require '../contacts/lib/PHPMailer/src/PHPMailer.php';
+require '../contacts/lib/PHPMailer/src/SMTP.php';
 // Get infomation
 $email = $_POST['email'];
-$message = $_POST['message'];
 $id = $_POST['id'];
 $reply_by = $_POST['reply_by'];
-$reply = $_POST['reply'];
+$reply_message = $_POST['reply_message'];
 $listname = explode(",", $email);
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -46,20 +45,20 @@ try {
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Body    = $reply;
+    $mail->Body    = $reply_message;
     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
 
     # Update database
-    $updateContactQuery = "update contact set
-                                status = '1',
+    $updateBookingQuery = "update booking set
                                 reply_by = '$reply_by',
-                                reply_for = '$id'
+                                reply_message = '$reply_message'
                             where id = '$id'";
-    queryExecute($updateContactQuery, false);
-    header("location: " . ADMIN_URL . "contacts");
+    queryExecute($updateBookingQuery, false);
+    // dd($updateBookingQuery);
+    header("location: " . ADMIN_URL . "booking");
     die;
 } catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    echo "Không thể gửi tin. Mailer Error: {$mail->ErrorInfo}";
 }

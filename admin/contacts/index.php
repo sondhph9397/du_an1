@@ -164,8 +164,8 @@ $contacts = queryExecute($getContactsQuery, true);
             });
             <?php if (isset($_GET['msg'])) : ?>
                 Swal.fire({
-                    position: 'bottom-end',
-                    icon: 'warning',
+                    position: 'center',
+                    icon: 'success',
                     title: "<?= $_GET['msg']; ?>",
                     showConfirmButton: false,
                     timer: 1500

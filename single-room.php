@@ -94,9 +94,9 @@ $allRooms = queryExecute($getAllRoomTypes, true);
                                 <div class="rq-total">
                                     <select name="room_stype" class="js-example-placeholder-single form-control">
                                         <option>&nbsp;</option>
-                                        <?php foreach($allRooms as $eachRoom) :?>
-                                        <option value="<?=$eachRoom['id']?>" <?php if($eachRoom['id'] == $room['id']) :?> selected <?php endif;?> ><?=$eachRoom['name']?></option>
-                                        <?php endforeach;?>
+                                        <?php foreach ($allRooms as $eachRoom) : ?>
+                                            <option value="<?= $eachRoom['name'] ?>" <?php if ($eachRoom['id'] == $room['id']) : ?> selected <?php endif; ?>><?= $eachRoom['name'] ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="row">
@@ -104,7 +104,6 @@ $allRooms = queryExecute($getAllRoomTypes, true);
                                         <h2>ADULT</h2>
                                         <div class="rq-adult">
                                             <select class="js-example-placeholder-single form-control" name="adult">
-                                                <option>&nbsp;</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -116,7 +115,6 @@ $allRooms = queryExecute($getAllRoomTypes, true);
                                         <h2>children</h2>
                                         <div class="rq-children">
                                             <select class="js-example-placeholder-single form-control" name="children">
-                                                <option>&nbsp;</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
