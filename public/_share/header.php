@@ -36,15 +36,12 @@ $websetting = queryExecute($getWebsettingQuery, false);
                         <a href="select-room-grid.php">Room</a>
                         <ul class="rq-sub-menu">
                             <li>
-                                <a href="single-room.php">Single Room</a>
+                                <a href="cart.php">Booking Cart</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="about-us.php">About</a>
-                    </li>
-                    <li>
-                        <a href="booking.php">Booking</a>
                     </li>
                     <li>
                         <a href="blog.php">Blog</a>

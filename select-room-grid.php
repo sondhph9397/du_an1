@@ -333,8 +333,8 @@ $room = queryExecute($getRoomQuery, true);
                           <p><?= $ro['short_desc'] ?></p>
                           <div class="singleRoom-grid-main-custom">
                             <div class="row">
-                              <h4><span>$250 </span> / Night</h4>
-                              <h5> <a class="btn rq-btn-secondary" href="single-room.php" >SELECT</a></h5>
+                              <h4><span>$<?= $ro['price']?> </span> / Night</h4>
+                              <h5> <a class="btn rq-btn-secondary" href="single-room.php?id=<?= $ro['id']?>" >SELECT</a></h5>
                             </div>
                           </div>
                         </div>

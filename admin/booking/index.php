@@ -4,13 +4,10 @@ define('TITLE', 'Đặt phòng');
 require_once '../../config/utils.php';
 checkAdminLoggedIn();
 // get keywords
-$keyword = isset($_GET['keyword']) == true ? $_GET['keyword'] : "";
-$statusSearch = isset($_GET['statusSearch']) == true ? $_GET['statusSearch'] : "";
 
-
-// danh sách booking
 $getBookingQuery = "select * from booking";
-$booking = queryExecute($getBookingQuery, true);
+$booking = queryExecute($getBookingQuery,true);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -59,7 +56,7 @@ $booking = queryExecute($getBookingQuery, true);
                             <form action="" method="get">
                                 <div class="form-row">
                                     <div class="form-group col-6">
-                                        <input type="text" value="<?php echo $keyword ?>" class="form-control" name="keyword" placeholder="Nhập tên, nội dung dịch vụ...">
+                                        <input type="text" value="" class="form-control" name="keyword" placeholder="Nhập tên, nội dung dịch vụ...">
                                     </div>
                                     <div class="form-group col-4">
                                         <select name="statusSearch" class="form-control">
@@ -79,11 +76,13 @@ $booking = queryExecute($getBookingQuery, true);
                             <table class="table table-stripped">
                                 <thead class="table-secondary">
                                     <th>Tên khách hàng</th>
+                                    <th>Email</th>
                                     <th>Ngày đến</th>
+                                    <th>Ngày Trả</th>
+                                    <th>Loại phòng</th>
                                     <th>Người lớn</th>
                                     <th>Trẻ em</th>
-                                    <th>Lời nhắn</th>
-                                    <th>Địa chỉ</th>
+                                    <th>Tổng tiền</th>
                                     <th>
                                        Thao tác
                                     </th>
@@ -92,15 +91,14 @@ $booking = queryExecute($getBookingQuery, true);
                                     <?php foreach ($booking as $book) : ?>
                                         <tr>
                                             <td><?php echo $book['name'] ?></td>
-                                            <td><?php echo $book['checkin_date'] ?></td>
+                                            <td><?php echo $book['email'] ?></td>
+                                            <td><?php echo $book['check_in'] ?></td>
+                                            <td><?php echo $book['check_out'] ?></td>
+                                            <td><?php echo $book['room_id'] ?></td>
                                             <td><?= $book['adults'] ?></td>
                                             <td><?= $book['children'] ?></td>
-                                            <td><?= $book['message']?></td>
-                                            <td><?= $book['address'] ?></td>
+                                            <td><?= $book['total_price']?></td>
                                             <td>
-                                                <a href="<?php echo ADMIN_URL . 'booking/check-form.php?id=' . $book['id'] ?>" class="btn btn-sm btn-success">
-                                                    <i class="fas fa-check"></i>
-                                                </a>
                                                 <a href="<?php echo ADMIN_URL . 'booking/remove.php?id=' . $book['id'] ?>" class="btn-remove btn btn-sm btn-danger">
                                                     <i class="fa fa-trash"></i>
                                                 </a>

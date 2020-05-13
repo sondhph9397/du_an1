@@ -88,14 +88,17 @@ $getUsersQuery = "select
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Giá</label>
+                                    <input type="text" name="price" class="form-control" value="<?= $room['price']?>">
+                                </div>
+                                <div class="form-group">
                                     <label for="">Tiêu đề</label>
                                     <input type="text" class="form-control" name="short_desc"
                                         value="<?= $room['short_desc'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Nội dung</label>
-                                    <textarea name="about" id="" cols="30" rows="10" class="form-control" ]?>
-                                    <?= $room['about']?></textarea>
+                                    <textarea name="about" id="" cols="30" rows="10" class="form-control"><?= $room['about']?></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6">

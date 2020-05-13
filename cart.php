@@ -3,6 +3,14 @@ session_start();
 require_once "./config/utils.php";
 
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
+
+$id = $_GET['id'];
+$getBookingQuery = "select * from booking where id='$id'";
+$booking = queryExecute($getBookingQuery,false);
+
+$room_id = $booking['room_id'];
+$getRoomQuery = "select * from room_types where id='$room_id'";
+$room = queryExecute($getRoomQuery,false);
 ?>
 
 
@@ -72,29 +80,21 @@ $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
                 </tr>
                 <tr class="rq-table-border">
                   <td class="rq-cart-row">
-                    <h3><i class="ion-android-close"></i> large cafe</h3>
-                    <p class="rq-cart-list-1 rq-table-data">EXTRAS:</p>
-                    <p class="rq-cart-list-2 rq-table-data"><i class="ion-android-close"></i>Airport Transfer  ($20)</p>
-                    <p class="rq-cart-list-2 rq-table-data"><i class="ion-android-close"></i>BBQ Party  ($7)</p>
-                    <p class="rq-cart-list-2 rq-table-data"><i class="ion-android-close"></i>Wifi  ($9)</p>
-                    <p class="rq-cart-list-1 rq-table-data">person count: &nbsp;&nbsp;&nbsp; 2</p>
+                    <h3><i class="ion-android-close"></i><?= $room['name']?></h3>
                   </td>
-                  <td class="rq-align"><span>$250</span> </td>
-                  <td class="rq-align rq-color">3 </td>
-                  <td class="rq-align"><span>$250</span> </td>
-                </tr>
-                <tr class="rq-table-border">
-                  <td class="rq-cart-row">
-                    <h3><i class="ion-android-close"></i> large cafe</h3>
-                    <p class="rq-cart-list-1 rq-table-data">EXTRAS:</p>
-                    <p class="rq-cart-list-2 rq-table-data"><i class="ion-android-close"></i>Airport Transfer  ($20)</p>
-                    <p class="rq-cart-list-2 rq-table-data"><i class="ion-android-close"></i>BBQ Party  ($7)</p>
-                    <p class="rq-cart-list-2 rq-table-data"><i class="ion-android-close"></i>Wifi  ($9)</p>
-                    <p class="rq-cart-list-1 rq-table-data">person count: &nbsp;&nbsp;&nbsp; 2</p>
-                  </td>
-                  <td class="rq-align"><span>$250</span> </td>
-                  <td class="rq-align rq-color">3 </td>
-                  <td class="rq-align"><span>$250</span> </td>
+                  <td class="rq-align"><span>$<?= $room['price']?></span> </td>
+                  <td class="rq-align rq-color">
+                  <?php 
+                  $date1= date_create($booking['check_in']);
+                  $date2= date_create($booking['check_out']);
+                  $diff=date_diff($date1,$date2);
+                  $a = $diff->format('%a');
+                  echo $a;
+                  ?> </td>
+                  <td class="rq-align"><span><?php
+                                           $total = $a * $room['price'];
+                                           echo $total;
+                                            ?></span> </td>
                 </tr>
               </table>
             </div>

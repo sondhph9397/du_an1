@@ -9,6 +9,7 @@ $about = trim($_POST['about']);
 $adults = trim($_POST['adults']);
 $children = trim($_POST['children']);
 $featrue_image = $_FILES['featrue_image'];
+$price = trim($_POST['price']);
 // validate bằng php
 $nameerr = "";
 $short_descerr = "";
@@ -33,9 +34,9 @@ if($featrue_image['size'] > 0){
     $filename = "public/admin/img/" . $filename;
 }
 $insertRoomQuery = "insert into room_types 
-                          (name, featrue_image, status, short_desc, about, adults, children)
+                          (name, featrue_image, status, price, short_desc, about, adults, children)
                     values 
-                          ('$name', '$filename', '$status', '$short_desc', '$about', '$adults', '$children')";
+                          ('$name', '$filename', '$status','$price', '$short_desc', '$about', '$adults', '$children')";
 queryExecute($insertRoomQuery, false);
 header("location: " . ADMIN_URL . "rooms");
 die;

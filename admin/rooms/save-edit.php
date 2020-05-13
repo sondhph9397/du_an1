@@ -11,6 +11,7 @@ $featrue_image = $_FILES['featrue_image'];
 $id = trim($_POST['id']);
 $adults = trim($_POST['adults']);
 $children = trim($_POST['children']);
+$price = trim($_POST['price']);
 
 // kiểm tra tài khoản có tồn tại hay không
 
@@ -50,6 +51,7 @@ if($filename==null){$updateRoomQuery = "update room_types
     set
           name = '$name',
           status = '$status',
+          price = '$price',
           short_desc = '$short_desc',
           about = '$about',
           adults = '$adults',
@@ -61,6 +63,7 @@ else{
                           name = '$name', 
                           featrue_image= '$filename',
                           status = '$status',
+                          price = '$price',
                           short_desc = '$short_desc',
                           about = '$about',
                           adults = '$adults',

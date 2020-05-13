@@ -89,6 +89,7 @@ $users = queryExecute($getUsersQuery, true);
                                 <th>Tên Phòng</th>
                                 <th width="200">Ảnh</th>
                                 <th>Trạng Thái</th>
+                                <th>Giá</th>
                                 <th>Tiêu Đề</th>
                                 <th width="300">Nội Dung</th>
                                 <th>Người lớn</th>
@@ -109,6 +110,7 @@ $users = queryExecute($getUsersQuery, true);
                                     <td>
                                         <?php echo $ro['status'] ?>
                                     </td>
+                                    <td><?= $ro['price']?></td>
                                     <td><?php echo $ro['short_desc']?></td>
                                     <td><?php echo $ro['about']?> </td>
                                     <th><?php echo $ro['adults']?></th>

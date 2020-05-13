@@ -61,107 +61,91 @@ $room = queryExecute($getRoomQuery, false);
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-5 col-lg-4">
-                        <div class="rq-single-room-checkin">
-                            <div class="rq-check-in-out-wrapper">
-                                <div class="rq-check-in-out">
-                                    <h2>CHECK IN</h2>
-                                    <div class="rq-check-in-out-display" id="rq-check-in">
-                                        <input type="text" id="rq-checkin-date" hidden>
-                                        <div class="rq-dmy-wrapper">
-                                            <p class="rq-single-date"></p>
-                                            <p class="rq-month-year">
-                                                <span class="rq-single-month"></span>
-                                                <span class="rq-single-year"></span>
-                                            </p>
+                        <form action="<?= ADMIN_URL . 'booking/save-add.php'?>" method="post" enctype="multipart/form-data">
+                            <div class="rq-single-room-checkin">
+                                <div class="rq-check-in-out-wrapper">
+                                    <div class="rq-check-in-out">
+                                        <h2>CHECK IN</h2>
+                                        <div class="rq-total">
+                                            <div class=""></div>
+                                            <input type="date" class="form-control" name="check_in">
+                                            <?php if (isset($_GET['checkinerr'])) : ?>
+                                                        <span class="text-danger"><?= $_GET['checkinerr'] ?></span>
+                                                    <?php endif ?>
                                         </div>
                                     </div>
-                                    <div class="rq-check-in-out-time" id="rq-check-in-time">
-                                        <div class="rq-time-wrapper">
-                                            <input type="text" name="rq-checkin-time" id="rq-checkin-time" hidden>
-                                            <span class="rq-checkin-time">TIME</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="rq-check-in-out">
-                                    <h2>CHECK OUT</h2>
-                                    <div class="rq-check-in-out-display" id="rq-check-out">
-                                        <input type="text" id="rq-checkout-date" hidden>
-                                        <div class="rq-dmy-wrapper">
-                                            <p class="rq-single-date"></p>
-                                            <p class="rq-month-year">
-                                                <span class="rq-single-month"></span>
-                                                <span class="rq-single-year"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="rq-check-in-out-time" id="rq-check-out-time">
-                                        <div class="rq-time-wrapper">
-                                            <input type="text" name="rq-checkout-time" id="rq-checkout-time" hidden>
-                                            <span class="rq-checkout-time">TIME</span>
+                                    <div class="rq-check-in-out">
+                                        <h2>CHECK OUT</h2>
+                                        <div class="rq-total">
+                                            <div class=""></div>
+                                            <input type="date" class="form-control" name="check_out">
+                                            <?php if (isset($_GET['checkouterr'])) : ?>
+                                                        <span class="text-danger"><?= $_GET['checkouterr'] ?></span>
+                                                    <?php endif ?>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--  / date & time picker -->
-                            <h2>total Room</h2>
-                            <div class="rq-total">
-                                <select class="js-example-placeholder-single form-control">
-                                    <option>&nbsp;</option>
-                                    <option value="1">Single Bed</option>
-                                    <option value="2">Double Bed</option>
-                                    <option value="3">Triple Bed</option>
-                                </select>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <h2>ADULT</h2>
-                                    <div class="rq-adult">
-                                        <select class="js-example-placeholder-single form-control">
-                                            <option>&nbsp;</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
+                                <!--  / date & time picker -->
+                                <h2>total Room</h2>
+                                <div class="rq-total">
+                                    <select name="room_stype" class="js-example-placeholder-single form-control">
+                                        <option>&nbsp;</option>
+                                        <option value="Single Bed">Single Bed</option>
+                                        <option value="Double Bed">Double Bed</option>
+                                        <option value="Triple Bed">Triple Bed</option>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <h2>ADULT</h2>
+                                        <div class="rq-adult">
+                                            <select class="js-example-placeholder-single form-control" name="adult">
+                                                <option>&nbsp;</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <h2>children</h2>
+                                        <div class="rq-children">
+                                            <select class="js-example-placeholder-single form-control" name="children">
+                                                <option>&nbsp;</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-6">
-                                    <h2>children</h2>
-                                    <div class="rq-children">
-                                        <select class="js-example-placeholder-single form-control">
-                                            <option>&nbsp;</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
+                                <!-------  /row  ------------>
+                                <h2>extra service</h2>
+                                <div class="rq-extra">
+                                    <div class="rq-extra-content">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> BBQ Party
+                                            </label>
+                                        </div>
+                                        <p><span>$250 </span>/ Group / Trip</p>
+                                    </div>
+                                    <div class="rq-extra-content rq-extra-content-2">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> Airport Transfer
+                                            </label>
+                                        </div>
+                                        <p><span>$250 </span>/ Group / Trip</p>
                                     </div>
                                 </div>
+                                <input type="text" name="room_id" value="<?= $_GET['id']?>" hidden>
+                                <button class="rq-btn-primary form-control" type="submit">check availability</button>
+                                <!-- <a class="btn btn-default" href="#" role="button">check availability</a> -->
                             </div>
-                            <!-------  /row  ------------>
-                            <h2>extra service</h2>
-                            <div class="rq-extra">
-                                <div class="rq-extra-content">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> BBQ Party
-                                        </label>
-                                    </div>
-                                    <p><span>$250 </span>/ Group / Trip</p>
-                                </div>
-                                <div class="rq-extra-content rq-extra-content-2">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox"> Airport Transfer
-                                        </label>
-                                    </div>
-                                    <p><span>$250 </span>/ Group / Trip</p>
-                                </div>
-                            </div>
-                            <button class="rq-btn-primary form-control" type="submit">check availability</button>
-                            <!-- <a class="btn btn-default" href="#" role="button">check availability</a> -->
-                        </div>
+                        </form>
                     </div>
                     <div class="col-md-8 col-sm-7 col-lg-8">
                         <div class="rq-flex-slider">
@@ -169,9 +153,9 @@ $room = queryExecute($getRoomQuery, false);
                             <div id="slider" class="flexslider">
                                 <ul class="slides">
                                     <?php foreach ($RoomGalleries as $ga) : ?>
-                                        <li>
-                                            <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
-                                        </li>
+                                    <li>
+                                        <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
+                                    </li>
                                     <?php endforeach; ?>
                                     <!-- items mirrored twice, total of 12 -->
                                 </ul>
@@ -179,9 +163,9 @@ $room = queryExecute($getRoomQuery, false);
                             <div id="carousel" class="flexslider">
                                 <ul class="slides">
                                     <?php foreach ($RoomGalleries as $ga) : ?>
-                                        <li>
-                                            <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
-                                        </li>
+                                    <li>
+                                        <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
+                                    </li>
                                     <?php endforeach; ?>
 
                                     <!-- items mirrored twice, total of 12 -->
@@ -212,9 +196,12 @@ $room = queryExecute($getRoomQuery, false);
                             <!------------/rq-single-room-para---------------------->
                             <div class="single-room-text-custom">
                                 <ul class="nav">
-                                    <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span>Decorated room, proper air condioned</li>
-                                    <li role="presentation"> <span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span>Saloon, gym, spa facilities</li>
-                                    <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span>24 hours room service</li>
+                                    <li role="presentation"><span class="badge"><i class="fa fa-check"
+                                                aria-hidden="true"></i></span>Decorated room, proper air condioned</li>
+                                    <li role="presentation"> <span class="badge"><i class="fa fa-check"
+                                                aria-hidden="true"></i></span>Saloon, gym, spa facilities</li>
+                                    <li role="presentation"><span class="badge"><i class="fa fa-check"
+                                                aria-hidden="true"></i></span>24 hours room service</li>
                                 </ul>
                             </div>
                             <div class="rq-tabs">
@@ -253,11 +240,14 @@ $room = queryExecute($getRoomQuery, false);
                                 <div class="row">
                                     <div class="rq-submit-review-form-wrapper">
                                         <h2>Submit review</h2>
-                                        <form id="add-feedback" action="<?= ADMIN_URL . 'feedback/save-add.php'?>" method="post" enctype="multipart/form-data">
+                                        <form id="add-feedback" action="<?= ADMIN_URL . 'feedback/save-add.php'?>"
+                                            method="post" enctype="multipart/form-data">
                                             <div class="rq-review-form col-md-8 col-sm-12">
                                                 <input type="text" name="name" class="form-control" placeholder="Name">
-                                                <input type="text" name="email" class="form-control" placeholder="Email">
-                                                <textarea class="form-control" name="comment" rows="5" placeholder="Your Comment"></textarea>
+                                                <input type="text" name="email" class="form-control"
+                                                    placeholder="Email">
+                                                <textarea class="form-control" name="comment" rows="5"
+                                                    placeholder="Your Comment"></textarea>
                                             </div>
 
                                             <div class="rq-review col-md-4 col-sm-12 col-xs-12">
@@ -294,7 +284,7 @@ $room = queryExecute($getRoomQuery, false);
 
 </html>
 <script>
-    $('#add-feedback').validate({
+$('#add-feedback').validate({
     rules: {
         name: {
             required: true,

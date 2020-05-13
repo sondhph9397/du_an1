@@ -93,6 +93,10 @@ $roles = queryExecute($getRoleQuery, true);
                                         <option value="INACTIVE">INACTIVE</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Giá<span class="text-danger">*</span></label>
+                                    <input type="text" name="price" class="form-control">
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
