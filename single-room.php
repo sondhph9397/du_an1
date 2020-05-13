@@ -1,14 +1,18 @@
 <?php
 session_start();
 require_once "./config/utils.php";
+$id = isset($_GET['id']) ? $_GET['id'] : "";
 // login user
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
 
 $getRoomGalleries = "select * from room_galleries";
 $RoomGalleries = queryExecute($getRoomGalleries, true);
 
-$getRoomQuery = "select * from room_types";
+$getRoomQuery = "select * from room_types where id = $id";
 $room = queryExecute($getRoomQuery, false);
+
+$getAllRoomTypes = "select * from room_types";
+$allRooms = queryExecute($getAllRoomTypes, true);
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +65,7 @@ $room = queryExecute($getRoomQuery, false);
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-5 col-lg-4">
-                        <form action="<?= ADMIN_URL . 'booking/save-add.php'?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= ADMIN_URL . 'booking/save-add.php' ?>" method="post" enctype="multipart/form-data">
                             <div class="rq-single-room-checkin">
                                 <div class="rq-check-in-out-wrapper">
                                     <div class="rq-check-in-out">
@@ -70,8 +74,8 @@ $room = queryExecute($getRoomQuery, false);
                                             <div class=""></div>
                                             <input type="date" class="form-control" name="check_in">
                                             <?php if (isset($_GET['checkinerr'])) : ?>
-                                                        <span class="text-danger"><?= $_GET['checkinerr'] ?></span>
-                                                    <?php endif ?>
+                                                <span class="text-danger"><?= $_GET['checkinerr'] ?></span>
+                                            <?php endif ?>
                                         </div>
                                     </div>
                                     <div class="rq-check-in-out">
@@ -80,8 +84,8 @@ $room = queryExecute($getRoomQuery, false);
                                             <div class=""></div>
                                             <input type="date" class="form-control" name="check_out">
                                             <?php if (isset($_GET['checkouterr'])) : ?>
-                                                        <span class="text-danger"><?= $_GET['checkouterr'] ?></span>
-                                                    <?php endif ?>
+                                                <span class="text-danger"><?= $_GET['checkouterr'] ?></span>
+                                            <?php endif ?>
                                         </div>
                                     </div>
                                 </div>
@@ -90,9 +94,9 @@ $room = queryExecute($getRoomQuery, false);
                                 <div class="rq-total">
                                     <select name="room_stype" class="js-example-placeholder-single form-control">
                                         <option>&nbsp;</option>
-                                        <option value="Single Bed">Single Bed</option>
-                                        <option value="Double Bed">Double Bed</option>
-                                        <option value="Triple Bed">Triple Bed</option>
+                                        <?php foreach($allRooms as $eachRoom) :?>
+                                        <option value="<?=$eachRoom['id']?>" <?php if($eachRoom['id'] == $room['id']) :?> selected <?php endif;?> ><?=$eachRoom['name']?></option>
+                                        <?php endforeach;?>
                                     </select>
                                 </div>
                                 <div class="row">
@@ -141,7 +145,7 @@ $room = queryExecute($getRoomQuery, false);
                                         <p><span>$250 </span>/ Group / Trip</p>
                                     </div>
                                 </div>
-                                <input type="text" name="room_id" value="<?= $_GET['id']?>" hidden>
+                                <input type="text" name="room_id" value="<?= $_GET['id'] ?>" hidden>
                                 <button class="rq-btn-primary form-control" type="submit">check availability</button>
                                 <!-- <a class="btn btn-default" href="#" role="button">check availability</a> -->
                             </div>
@@ -153,9 +157,9 @@ $room = queryExecute($getRoomQuery, false);
                             <div id="slider" class="flexslider">
                                 <ul class="slides">
                                     <?php foreach ($RoomGalleries as $ga) : ?>
-                                    <li>
-                                        <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
-                                    </li>
+                                        <li>
+                                            <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
+                                        </li>
                                     <?php endforeach; ?>
                                     <!-- items mirrored twice, total of 12 -->
                                 </ul>
@@ -163,9 +167,9 @@ $room = queryExecute($getRoomQuery, false);
                             <div id="carousel" class="flexslider">
                                 <ul class="slides">
                                     <?php foreach ($RoomGalleries as $ga) : ?>
-                                    <li>
-                                        <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
-                                    </li>
+                                        <li>
+                                            <img src="<?= $ga['img_url'] ?>" alt="Slider Image" />
+                                        </li>
                                     <?php endforeach; ?>
 
                                     <!-- items mirrored twice, total of 12 -->
@@ -196,12 +200,9 @@ $room = queryExecute($getRoomQuery, false);
                             <!------------/rq-single-room-para---------------------->
                             <div class="single-room-text-custom">
                                 <ul class="nav">
-                                    <li role="presentation"><span class="badge"><i class="fa fa-check"
-                                                aria-hidden="true"></i></span>Decorated room, proper air condioned</li>
-                                    <li role="presentation"> <span class="badge"><i class="fa fa-check"
-                                                aria-hidden="true"></i></span>Saloon, gym, spa facilities</li>
-                                    <li role="presentation"><span class="badge"><i class="fa fa-check"
-                                                aria-hidden="true"></i></span>24 hours room service</li>
+                                    <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span>Decorated room, proper air condioned</li>
+                                    <li role="presentation"> <span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span>Saloon, gym, spa facilities</li>
+                                    <li role="presentation"><span class="badge"><i class="fa fa-check" aria-hidden="true"></i></span>24 hours room service</li>
                                 </ul>
                             </div>
                             <div class="rq-tabs">
@@ -240,14 +241,11 @@ $room = queryExecute($getRoomQuery, false);
                                 <div class="row">
                                     <div class="rq-submit-review-form-wrapper">
                                         <h2>Submit review</h2>
-                                        <form id="add-feedback" action="<?= ADMIN_URL . 'feedback/save-add.php'?>"
-                                            method="post" enctype="multipart/form-data">
+                                        <form id="add-feedback" action="<?= ADMIN_URL . 'feedback/save-add.php' ?>" method="post" enctype="multipart/form-data">
                                             <div class="rq-review-form col-md-8 col-sm-12">
                                                 <input type="text" name="name" class="form-control" placeholder="Name">
-                                                <input type="text" name="email" class="form-control"
-                                                    placeholder="Email">
-                                                <textarea class="form-control" name="comment" rows="5"
-                                                    placeholder="Your Comment"></textarea>
+                                                <input type="text" name="email" class="form-control" placeholder="Email">
+                                                <textarea class="form-control" name="comment" rows="5" placeholder="Your Comment"></textarea>
                                             </div>
 
                                             <div class="rq-review col-md-4 col-sm-12 col-xs-12">
@@ -284,40 +282,40 @@ $room = queryExecute($getRoomQuery, false);
 
 </html>
 <script>
-$('#add-feedback').validate({
-    rules: {
-        name: {
-            required: true,
-            maxlength: 191,
-            minlength: 2
+    $('#add-feedback').validate({
+        rules: {
+            name: {
+                required: true,
+                maxlength: 191,
+                minlength: 2
+            },
+            email: {
+                required: true,
+                maxlength: 191,
+                email: true
+            },
+            comment: {
+                required: true,
+                maxlength: 255
+            }
         },
-        email: {
-            required: true,
-            maxlength: 191,
-            email: true
-        },
-        comment: {
-            required: true,
-            maxlength: 255
+        messages: {
+            name: {
+                required: "hãy nhập tên bạn",
+                maxlength: "kí tự không qá 191",
+                minlength: "tên từ 2 ký tự trở lên"
+            },
+            email: {
+                required: "hãy nhập email",
+                maxlength: "tiêu đề không quá 191 kí tự",
+                email: "email không hợp lệ"
+            },
+            comment: {
+                required: "hãy nhập nội dung",
+                maxlength: "độ dài không quá 255 kí tự"
+            }
         }
-    },
-    messages: {
-        name: {
-            required: "hãy nhập tên bạn",
-            maxlength: "kí tự không qá 191",
-            minlength: "tên từ 2 ký tự trở lên"
-        },
-        email: {
-            required: "hãy nhập email",
-            maxlength: "tiêu đề không quá 191 kí tự",
-            email: "email không hợp lệ"
-        },
-        comment: {
-            required: "hãy nhập nội dung",
-            maxlength: "độ dài không quá 255 kí tự"
-        }
-    }
 
-});
+    });
 </script>
 </script>

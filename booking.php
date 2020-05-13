@@ -3,9 +3,9 @@ session_start();
 require_once "./config/utils.php";
 
 $loggedInUser = isset($_SESSION[AUTH]) ? $_SESSION[AUTH] : null;
-if(!isset($_GET['id'])) {
-   header('location: select-room-grid.php?msg=cam on ban đã đặt phòng');
-   die;
+if (!isset($_GET['id'])) {
+  header('location: select-room-grid.php?msg=cam on ban đã đặt phòng');
+  die;
 }
 $id = $_GET['id'];
 $getBookingQuery = "select * from booking where id = $id";
@@ -17,13 +17,13 @@ $room = queryExecute($getRoomQuery, false);
 $getServiceQuery = "select * from  service";
 $service = queryExecute($getServiceQuery, true);
 
-if(isset($_SESSION[BOOK])) {
-  $booking_id = isset($_SESSION[BOOK]['id']) ? $_SESSION[BOOK]['id'] : "" ;
+if (isset($_SESSION[BOOK])) {
+  $booking_id = isset($_SESSION[BOOK]['id']) ? $_SESSION[BOOK]['id'] : "";
   $check_in = isset($_SESSION[BOOK]['check_in']) ? $_SESSION[BOOK]['check_in'] : "";
   $check_out = isset($_SESSION[BOOK]['check_out']) ? $_SESSION[BOOK]['check_out'] : "";
   $children = isset($_SESSION[BOOK]['children']) ? $_SESSION[BOOK]['children'] : "";
   $adults = isset($_SESSION[BOOK]['adults']) ? $_SESSION[BOOK]['adults'] : "";
-}else {
+} else {
   header("Location: " . BASE_URL) . "?msg=Chọn phòng loại phòng trước khi thanh toán";
   die;
 }
@@ -47,7 +47,7 @@ if(isset($_SESSION[BOOK])) {
 
 <body>
 
-  
+
 
   <?= require_once './public/_share/header.php' ?>
   <div class="rq-checkout-banner">
@@ -64,7 +64,7 @@ if(isset($_SESSION[BOOK])) {
   <div class="rq-cart">
     <div class="container">
       <div class="row justify-content-center">
-       
+
         <!--- col-md-4 ------>
         <div class="col-md-8 ml-8 ">
           <div class="rq-cart-table">
@@ -78,30 +78,30 @@ if(isset($_SESSION[BOOK])) {
               <tr class="rq-table-border">
                 <td class="rq-cart-row">
                   <h3><i class="ion-android-close"></i><?= $room['name'] ?></h3>
-                 
+
                 </td>
                 <td class="rq-align"><span><?= $room['price'] ?></span> </td>
                 <td class="rq-align rq-color">
                   <?php
-                  $date1=date_create($booking['check_in']);
-                  $date2=date_create($booking['check_out']);
-                  $diff=date_diff($date1,$date2);
+                  $date1 = date_create($booking['check_in']);
+                  $date2 = date_create($booking['check_out']);
+                  $diff = date_diff($date1, $date2);
                   $a = $diff->format('%a');
                   echo $a;
-              
-                  
+
+
                   ?>
 
                 </td>
                 <td class="rq-align"><span><?php
-                                           $total = $a * $room['price'];
-                                           echo $total;
+                                            $total = $a * $room['price'];
+                                            echo $total;
                                             ?>
-                                            </span></td>
+                  </span></td>
               </tr>
-             
-               
-              
+
+
+
             </table>
           </div>
         </div>
@@ -111,7 +111,7 @@ if(isset($_SESSION[BOOK])) {
 
   <?= require_once './public/_share/footer.php' ?>
   <?= require_once './public/_share/script.php' ?>
-  
+
 
 </body>
 

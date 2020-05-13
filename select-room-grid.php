@@ -26,7 +26,7 @@ $room = queryExecute($getRoomQuery, true);
   <div id="rq-circle-loader-wrapper">
     <div id="rq-circle-loader-center">
       <div class="rq-circle-load">
-        <img src="<?= ADMIN_ASSET_URL .'img/oval.svg'?>" alt="Page Loader">
+        <img src="<?= ADMIN_ASSET_URL . 'img/oval.svg' ?>" alt="Page Loader">
       </div>
     </div>
   </div>
@@ -333,8 +333,8 @@ $room = queryExecute($getRoomQuery, true);
                           <p><?= $ro['short_desc'] ?></p>
                           <div class="singleRoom-grid-main-custom">
                             <div class="row">
-                              <h4><span>$<?= $ro['price']?> </span> / Night</h4>
-                              <h5> <a class="btn rq-btn-secondary" href="single-room.php?id=<?= $ro['id']?>" >SELECT</a></h5>
+                              <h4><span>$<?= $ro['price'] ?> </span> / Night</h4>
+                              <h5> <a class="btn rq-btn-secondary" href="single-room.php?id=<?= $ro['id'] ?>">SELECT</a></h5>
                             </div>
                           </div>
                         </div>

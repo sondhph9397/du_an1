@@ -64,7 +64,7 @@ $users = queryExecute($getUsersQuery, true);
                         <!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?= ADMIN_URL . 'dashboard'?>">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="<?= ADMIN_URL . 'dashboard' ?>">Dashboard</a></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -82,17 +82,16 @@ $users = queryExecute($getUsersQuery, true);
                             <form action="" method="get">
                                 <div class="form-row">
                                     <div class="form-group col-6">
-                                        <input type="text" value="<?php echo $keyword ?>" class="form-control"
-                                            name="keyword" placeholder="Nhập tên, số điện thoại...">
+                                        <input type="text" value="<?php echo $keyword ?>" class="form-control" name="keyword" placeholder="Nhập tên, số điện thoại...">
                                     </div>
                                     <div class="form-group col-4">
                                         <select name="role" class="form-control">
                                             <option selected value="">Tất cả</option>
                                             <?php foreach ($roles as $ro) : ?>
-                                            <option <?php if ($roleId === $ro['id']) {
+                                                <option <?php if ($roleId === $ro['id']) {
                                                             echo "selected";
                                                         } ?> value="<?php echo $ro['id'] ?>"><?php echo $ro['name'] ?>
-                                            </option>
+                                                </option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -111,35 +110,32 @@ $users = queryExecute($getUsersQuery, true);
                                 <th>Loại tài khoản</th>
                                 <th>Số ĐT</th>
                                 <th>
-                                    <a href="<?= ADMIN_URL . 'users/add-form.php' ?>" class="btn btn-primary btn-sm"><i
-                                            class="fa fa-plus"></i> Thêm</a>
+                                    <a href="<?= ADMIN_URL . 'users/add-form.php' ?>" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Thêm</a>
                                 </th>
                             </thead>
                             <tbody>
                                 <?php foreach ($users as $us) : ?>
-                                <tr>
-                                    <td><?php echo $us['id'] ?></td>
-                                    <td><?php echo $us['name'] ?></td>
-                                    <td><?php echo $us['email'] ?></td>
-                                    <td>
-                                        <?php echo $us['role_name'] ?>
-                                    </td>
-                                    <td><?php echo $us['number_phone'] ?></td>
-                                    <td>
-                                        <?php if ($us['role_id'] < $_SESSION[AUTH]['role_id'] || $us['id'] === $_SESSION[AUTH]['id']) : ?>
-                                        <a href="<?php echo ADMIN_URL . 'users/edit-form.php?id=' . $us['id'] ?>"
-                                            class="btn btn-sm btn-info">
-                                            <i class="fa fa-pencil-alt"></i>
-                                        </a>
-                                        <?php endif; ?>
-                                        <?php if ($us['role_id'] < $_SESSION[AUTH]['role_id']) : ?>
-                                        <a href="<?php echo ADMIN_URL . 'users/remove.php?id=' . $us['id'] ?>"
-                                            class="btn-remove btn btn-sm btn-danger">
-                                            <i class="fa fa-trash"></i>
-                                        </a>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td><?php echo $us['id'] ?></td>
+                                        <td><?php echo $us['name'] ?></td>
+                                        <td><?php echo $us['email'] ?></td>
+                                        <td>
+                                            <?php echo $us['role_name'] ?>
+                                        </td>
+                                        <td><?php echo $us['number_phone'] ?></td>
+                                        <td>
+                                            <?php if ($us['role_id'] < $_SESSION[AUTH]['role_id'] || $us['id'] === $_SESSION[AUTH]['id']) : ?>
+                                                <a href="<?php echo ADMIN_URL . 'users/edit-form.php?id=' . $us['id'] ?>" class="btn btn-sm btn-info">
+                                                    <i class="fa fa-pencil-alt"></i>
+                                                </a>
+                                            <?php endif; ?>
+                                            <?php if ($us['role_id'] < $_SESSION[AUTH]['role_id']) : ?>
+                                                <a href="<?php echo ADMIN_URL . 'users/remove.php?id=' . $us['id'] ?>" class="btn-remove btn btn-sm btn-danger">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -157,35 +153,35 @@ $users = queryExecute($getUsersQuery, true);
     <!-- ./wrapper -->
     <?php include_once '../_share/script.php'; ?>
     <script>
-    $(document).ready(function() {
-        $('.btn-remove').on('click', function() {
-            var redirectUrl = $(this).attr('href');
-            Swal.fire({
-                title: 'Thông báo!',
-                text: "Bạn có chắc chắn muốn xóa tài khoản này?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Đồng ý'
-            }).then((result) => { // arrow function es6 (es2015)
-                if (result.value) {
-                    window.location.href = redirectUrl;
-                }
+        $(document).ready(function() {
+            $('.btn-remove').on('click', function() {
+                var redirectUrl = $(this).attr('href');
+                Swal.fire({
+                    title: 'Thông báo!',
+                    text: "Bạn có chắc chắn muốn xóa tài khoản này?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Đồng ý'
+                }).then((result) => { // arrow function es6 (es2015)
+                    if (result.value) {
+                        window.location.href = redirectUrl;
+                    }
+                });
+                return false;
             });
-            return false;
-        });
-        <?php
-        if (isset($_GET['msg'])): ?>
-            Swal.fire({
-                position: 'bottom-end',
-                icon: 'warning',
-                title: "<?= $_GET['msg']; ?>",
-                showConfirmButton: false,
-                timer: 1500
-            });
+            <?php
+            if (isset($_GET['msg'])) : ?>
+                Swal.fire({
+                    position: 'bottom-end',
+                    icon: 'warning',
+                    title: "<?= $_GET['msg']; ?>",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             <?php endif; ?>
-    });
+        });
     </script>
 </body>
 
