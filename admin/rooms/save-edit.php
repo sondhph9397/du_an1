@@ -56,7 +56,8 @@ if($filename==null){$updateRoomQuery = "update room_types
           about = '$about',
           adults = '$adults',
           children = '$children'
-          where id = $id";} 
+          where id = $id";
+        } 
 else{
     $updateRoomQuery = "update room_types 
                     set

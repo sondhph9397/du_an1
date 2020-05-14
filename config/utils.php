@@ -63,6 +63,13 @@ function checkAdminLoggedIn(){
     }
 }
 
+function loginUser(){
+    if(!isset($_SESSION[AUTH]) || $_SESSION[AUTH] == null || count($_SESSION[AUTH])== 0){
+        header('location:' . BASE_URL . '?msg=hãy đăng nhập');
+        die;
+    }
+}
+
 
 function dd($data){
     echo "<pre>";

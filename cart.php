@@ -72,7 +72,7 @@ $room = queryExecute($getRoomQuery, false);
                                     <?php $total= $total_date * $room['price']; 
                                     echo $total; ?>
                                 </span></h3>
-                            <a class="btn rq-btn-secondary form-control" href="#">update cart</a>
+                            <a class="btn rq-btn-secondary form-control" href="#">Thanh Toán</a>
                             <button class="rq-btn-primary form-control" type="submit">proceed checkout</button>
                         </div>
                     </div>

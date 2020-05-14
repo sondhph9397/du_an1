@@ -48,7 +48,7 @@ $room= queryExecute($getRoomQuery,true);
             <section class="content">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
-                    <form id="add-user-form" action="<?= ADMIN_URL . 'room_galleries/save-edit.php' ?>" method="post"
+                    <form id="edit-form" action="<?= ADMIN_URL . 'room_galleries/save-edit.php' ?>" method="post"
                         enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
@@ -76,7 +76,7 @@ $room= queryExecute($getRoomQuery,true);
                                 <div class="from-group pt-2">
                                     <div class="col d-flex justify-content-start">
                                         <button type="submit" class="btn btn-primary">Cập nhật</button>&nbsp;
-                                        <a href="<?= ADMIN_URL . 'news' ?>" class="btn btn-danger">Hủy</a>
+                                        <a href="<?= ADMIN_URL . 'room_galleries' ?>" class="btn btn-danger">Hủy</a>
                                     </div>
                                 </div>
                             </div>
@@ -112,24 +112,22 @@ $room= queryExecute($getRoomQuery,true);
         reader.readAsDataURL(file);
     }
 
-    $('#add-user-form').validate({
+    $('#edit-form').validate({
         rules: {
-            title: {
+            room_id: {
                 required: true,
-                maxlength: 100
             },
-            content: {
+            image: {
                 required: true
             }
         },
         messages: {
-            title: {
-                required: "Hãy nhập tên bản tin",
-                maxlength: "Số lượng ký tự tối đa bằng 100 ký tự"
+            room_id: {
+                required: "Hãy chọn phòng"
             },
 
             content: {
-                required: "Hãy nhập nội dung bài viết"
+                required: "Hãy chọn ảnh"
 
             }
         }

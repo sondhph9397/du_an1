@@ -115,7 +115,7 @@ $news = queryExecute($getAllNewsSql,true);
                                 <div class="icon">
                                     <i class="fas fa-images"></i>
                                 </div>
-                                <a href="<?= ADMIN_URL . 'schedules/' ?>" class="small-box-footer">Chi tiết <i
+                                <a href="<?= ADMIN_URL . 'room_galleries/' ?>" class="small-box-footer">Chi tiết <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>

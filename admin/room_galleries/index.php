@@ -86,7 +86,7 @@ $getUsersQuery = "select
                             <thead>
                                 <th>ID</th>
                                 <th>Tên Phòng</th>
-                                <th width="200">Ảnh</th>
+                                <th width="400">Ảnh</th>
                                 <th>
                                     <a href="<?= ADMIN_URL . 'room_galleries/add-form.php' ?>" class="btn btn-primary btn-sm"><i
                                             class="fa fa-plus"></i> Thêm</a>
