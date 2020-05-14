@@ -108,17 +108,16 @@ $room = queryExecute($getRoomQuery, false);
     </div><!-- main-wrapper -->
     <?php require_once "./public/_share/script.php"; ?>
     <script>
-    < ? php
-    if (isset($_GET['msg'])): ? >
+    <?php
+    if (isset($_GET['msg'])): ?>
         Swal.fire({
             position: 'center',
             icon: 'success',
             title: "<?= $_GET['msg']; ?>",
             showConfirmButton: false,
             timer: 1500
-        }); <
-    ?
-    php endif; ? >
+        });
+         <?php endif; ?>
     </script>
 </body>
 

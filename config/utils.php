@@ -52,7 +52,7 @@ function checkAdminLoggedIn(){
     // đăng nhập thành công - kiểm tra bằng SESSION AUTH
 
     if(!isset($_SESSION[AUTH]) || $_SESSION[AUTH] == null || count($_SESSION[AUTH])== 0){
-        header('location:' . BASE_URL . 'login/sign-up.php?msg=hãy đăng nhập');
+        header('location:' . BASE_URL . '?msg=hãy đăng nhập');
         die;
     }
     // gt cột role_id = 2

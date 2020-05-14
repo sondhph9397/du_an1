@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "../../config/utils.php";
-
+checkAdminLoggedIn();
 
 $check_in = trim($_POST['check_in']);
 $check_out = trim($_POST['check_out']);
