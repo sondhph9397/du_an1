@@ -21,7 +21,7 @@ $websetting = queryExecute($getWebsettingQuery, false);
                 </button>
 
                 <!-- Logo -->
-                <a class="navbar-brand" href="index.php"><img class="logo"
+                <a class="navbar-brand" href="<?= BASE_URL  ?>"><img class="logo"
                         src="<?= BASE_URL . $websetting['logo'] ?>" alt="GLIMPSE"></a>
             </div>
             <!-- Navbar Toggle End -->
@@ -30,32 +30,32 @@ $websetting = queryExecute($getWebsettingQuery, false);
             <div id="nav-menu" class="navbar-collapse rq-menu-wrapper collapse" role="navigation">
                 <ul class="nav navbar-nav rq-menus">
                     <li class="active">
-                        <a href="index.php">Home</a>
+                        <a href="<?= BASE_URL ?>">Home</a>
                     </li>
                     <li>
-                        <a href="select-room-grid.php">Room</a>
+                        <a href="<?= BASE_URL . 'select-room-grid.php'?>">Room</a>
                         <ul class="rq-sub-menu">
                             <li>
-                                <a href="cart.php">Booking Cart</a>
+                                <a href="<?= BASE_URL . 'cart.php'?>">Booking Cart</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="about-us.php">About</a>
+                        <a href="<?= BASE_URL . 'about-us.php'?>">About</a>
                     </li>
                     <li>
-                        <a href="blog.php">Blog</a>
+                        <a href="<?=BASE_URL . 'blog.php'?>">Blog</a>
                         <ul class="rq-sub-menu">
                             <li>
-                                <a href="blog.php">Blog</a>
+                                <a href="<?= BASE_URL . 'blog.php'?>">Blog</a>
                             </li>
                             <li>
-                                <a href="blog-details.php">Blog Details</a>
+                                <a href="<?= BASE_URL . 'blog-details.php'?>">Blog Details</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="contact.php">Contact</a>
+                        <a href="<?=BASE_URL . 'contact.php'?>">Contact</a>
                     </li>
                 </ul>
             </div>

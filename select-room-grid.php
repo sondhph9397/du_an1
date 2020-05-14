@@ -299,7 +299,7 @@ $room = queryExecute($getRoomQuery, true);
               <div class="row">
                 <div class="col-md-4 col-sm-4">
                   <div class="singleRoom-grid-upper-left pull-left ">
-                    <h5>8 results found</h5>
+                    <h5>4 results found</h5>
                   </div>
                 </div>
                 <div class="col-md-8 col-sm-8">

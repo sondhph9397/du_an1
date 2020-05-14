@@ -129,7 +129,7 @@ $allRooms = queryExecute($getAllRoomTypes, true);
                                     <div class="rq-extra-content">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> BBQ Party
+                                                <input type="checkbox"> Đã Bao Gồm Thuế
                                             </label>
                                         </div>
                                         <p><span>$250 </span>/ Group / Trip</p>
@@ -137,7 +137,7 @@ $allRooms = queryExecute($getAllRoomTypes, true);
                                     <div class="rq-extra-content rq-extra-content-2">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox"> Airport Transfer
+                                                <input type="checkbox"> Dịch vụ hoàn hảo
                                             </label>
                                         </div>
                                         <p><span>$250 </span>/ Group / Trip</p>

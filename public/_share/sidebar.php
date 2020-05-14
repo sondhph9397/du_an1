@@ -40,7 +40,7 @@
                     </div>
                     <div class="rq-other-options">
                         <a href="#" class="rq-forgot-pass">Forget Password ?</a>
-                        <a href="#" class="rq-signup">Sign up</a>
+                        <a href="<?= LOGIN_URL .'sign-up.php'?>" class="rq-signup">Sign up</a>
                     </div>
                 <?php endif; ?>
             </div>

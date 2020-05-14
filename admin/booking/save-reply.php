@@ -57,7 +57,7 @@ try {
                             where id = '$id'";
     queryExecute($updateBookingQuery, false);
     // dd($updateBookingQuery);
-    header("location: " . ADMIN_URL . "booking");
+    header("location: " . ADMIN_URL . "booking?msg=Gửi thành công!");
     die;
 } catch (Exception $e) {
     echo "Không thể gửi tin. Mailer Error: {$mail->ErrorInfo}";

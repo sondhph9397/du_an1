@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "../../config/utils.php";
-checkAdminLoggedIn();
+
 
 $check_in = trim($_POST['check_in']);
 $check_out = trim($_POST['check_out']);
@@ -18,6 +18,7 @@ $checkouterr = "";
 $roomerr = "";
 
 // hiệu timestamp của checkout với checkin
+//strtotime Hàm trả về số nguyên là timestamp
 $diff = strtotime($check_out) - strtotime($check_in);
 // tính ngày chênh lệch của ngày checkout với ngày checkin
 $total_date = round($diff / (60 * 60 * 24));
