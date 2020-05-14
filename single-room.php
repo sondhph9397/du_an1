@@ -13,6 +13,9 @@ $room = queryExecute($getRoomQuery, false);
 
 $getAllRoomTypes = "select * from room_types";
 $allRooms = queryExecute($getAllRoomTypes, true);
+
+$getFeedback = "select * from custom_feedback";
+$feed = queryExecute($getFeedback,true);
 ?>
 
 <!DOCTYPE html>
@@ -217,8 +220,10 @@ $allRooms = queryExecute($getAllRoomTypes, true);
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
-                                        <p>On the other hand, we denounce with righteous indignation </p>
-                                        <h6>dorian doe</h6>
+                                        <?php foreach($feed as $fe):?>
+                                        <p><?= $fe['comment']?></p>
+                                        <h6><?= $fe['name']?></h6>
+                                        <?php endforeach;?>
                                     </div>
                                     <div id="menu1" class="tab-pane fade">
                                         <div>

@@ -12,6 +12,6 @@ $insertFeedbackQuery = "insert into custom_feedback
                                 values
                                     ('$name','$email','$rating','$comment')";
 queryExecute($insertFeedbackQuery, false);
-header('location: '.BASE_URL."index.php?msg=Gửi phản hồi thành công");
+header('location: '.BASE_URL."single-room.php?msg=Gửi phản hồi thành công");
 die;
 ?>
